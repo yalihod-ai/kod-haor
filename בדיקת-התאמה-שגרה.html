@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>בדיקת התאמה לשגרת הטיפוח שלך — יאלי הוד</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;
+    --gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--danger:#b5654a;
+    --shadow:0 12px 44px rgba(108,83,54,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--brown);line-height:1.75;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  .hidden{display:none!important}
+  .hero{background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 60%,var(--cream-deep));
+    text-align:center;padding:68px 0 56px;border-bottom:1px solid rgba(194,166,110,.3)}
+  .kicker{display:inline-block;background:rgba(194,166,110,.18);color:var(--gold-deep);
+    font-weight:700;font-size:.82rem;letter-spacing:1.5px;padding:8px 18px;border-radius:999px;margin-bottom:24px}
+  h1{font-size:2.7rem;font-weight:900;line-height:1.2;margin-bottom:20px;max-width:640px;margin-inline:auto}
+  h1 .g{color:var(--gold-deep)}
+  .sub{font-size:1.14rem;color:var(--brown-soft);max-width:600px;margin:0 auto;font-weight:400}
+  .sub .em{color:var(--brown);font-weight:600}
+  .cta{display:inline-block;font-family:'Heebo';font-weight:800;font-size:1.2rem;cursor:pointer;
+    border:none;border-radius:14px;padding:18px 46px;background:var(--brown);color:var(--white);
+    margin-top:30px;transition:.2s;box-shadow:0 8px 24px rgba(108,83,54,.25);text-decoration:none}
+  .cta:hover{background:var(--gold-deep);transform:translateY(-2px)}
+  .cta-sub{display:block;margin-top:12px;font-size:.9rem;color:var(--brown-soft)}
+  section{padding:52px 0}
+  .stitle{font-size:1.7rem;font-weight:800;text-align:center;margin-bottom:8px}
+  .stitle .g{color:var(--gold-deep)}
+  .slead{text-align:center;color:var(--brown-soft);margin-bottom:30px;max-width:600px;margin-inline:auto}
+  .why p{font-size:1.08rem;max-width:620px;margin:0 auto 14px;text-align:center}
+  .whyq{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:560px;margin:18px auto 0}
+  .whyq span{background:var(--white);border:1px solid var(--cream-deep);border-radius:999px;padding:8px 18px;font-weight:600;color:var(--brown)}
+  .get{background:var(--white)}
+  .list{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:13px}
+  .item{display:flex;gap:14px;align-items:flex-start;background:var(--cream);border-radius:14px;padding:17px 22px;border-right:4px solid var(--gold)}
+  .item .ic{flex:none;width:26px;height:26px;border-radius:50%;background:rgba(194,166,110,.25);
+    color:var(--gold-deep);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;margin-top:2px}
+  .item p{font-size:1.05rem}
+  .soft{text-align:center;max-width:600px;margin:26px auto 0;font-size:1.05rem;color:var(--brown-soft);font-style:italic}
+  .vs{background:var(--brown);color:var(--cream);text-align:center;padding:34px 0}
+  .vs .wrap{max-width:640px}
+  .vs .row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:560px){.vs .row{grid-template-columns:1fr}h1{font-size:2rem}}
+  .vs .box{background:rgba(251,250,246,.08);border-radius:14px;padding:20px;text-align:right}
+  .vs .box b{display:block;color:var(--gold);font-size:1.05rem;margin-bottom:6px}
+  .final{text-align:center;background:linear-gradient(160deg,var(--cream-deep),var(--cream))}
+  footer{text-align:center;padding:28px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700}
+
+  .quiz{max-width:680px;margin:0 auto;padding:36px 22px 80px}
+  .qprogress{position:sticky;top:0;background:var(--cream);padding:14px 0;z-index:5}
+  .bar{height:7px;background:var(--cream-deep);border-radius:99px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));width:0;transition:width .35s}
+  .barlbl{text-align:center;font-size:.85rem;color:var(--brown-soft);margin-top:8px;font-weight:600}
+  .qcard{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:36px 32px;margin-top:14px;animation:fade .3s}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+  .qtext{font-size:1.5rem;font-weight:800;margin-bottom:6px;line-height:1.3}
+  .qhint{font-size:.9rem;color:var(--brown-soft);margin-bottom:20px}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{border:1.5px solid var(--cream-deep);background:var(--cream);border-radius:12px;padding:15px 18px;
+    cursor:pointer;font-size:1.06rem;font-weight:600;transition:.16s;display:flex;align-items:center;gap:12px}
+  .opt:hover{border-color:var(--gold);background:var(--white)}
+  .opt.sel{border-color:var(--gold-deep);background:rgba(194,166,110,.15);box-shadow:0 0 0 3px rgba(194,166,110,.14)}
+  .opt .dot{width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem}
+  .opt.multi .dot{border-radius:6px}
+  .opt.sel .dot{background:var(--gold-deep);border-color:var(--gold-deep)}
+  .qnav{display:flex;justify-content:space-between;margin-top:26px;align-items:center}
+  .btn{font-family:'Heebo';font-weight:800;font-size:1.05rem;cursor:pointer;border:none;border-radius:11px;padding:14px 30px;transition:.2s}
+  .btn-primary{background:var(--brown);color:var(--white)}.btn-primary:hover{background:var(--gold-deep)}
+  .btn-primary:disabled{opacity:.35;cursor:not-allowed}
+  .btn-ghost{background:transparent;color:var(--brown-soft);font-weight:700}
+
+  .result{max-width:680px;margin:0 auto;padding:40px 22px 90px;animation:fade .4s}
+  .rtop{text-align:center;margin-bottom:8px;color:var(--gold-deep);font-weight:700;letter-spacing:1px}
+  .rtitle{font-size:2rem;font-weight:900;text-align:center;margin-bottom:20px;line-height:1.25}
+  .rcard{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:34px 34px}
+  .rmsg{font-size:1.1rem;margin-bottom:22px;white-space:pre-line}
+  .rcheck{background:var(--cream);border-radius:14px;padding:20px 24px}
+  .rcheck h4{font-size:1.15rem;font-weight:800;margin-bottom:12px}
+  .rcheck ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .rcheck li{display:flex;gap:10px;font-size:1.02rem}.rcheck li::before{content:"◇";color:var(--gold-deep);font-weight:800}
+  .rcaveat{font-size:.95rem;color:var(--brown-soft);margin-top:14px;font-style:italic}
+  .rwarn{text-align:center;font-size:.9rem;color:var(--brown-soft);margin:16px 0}
+  .offer{background:linear-gradient(160deg,var(--white),var(--cream-deep));border:2px solid var(--gold);
+    border-radius:18px;padding:30px 30px;margin-top:14px;text-align:center}
+  .offer h3{font-size:1.6rem;font-weight:900;margin-bottom:6px}
+  .offer .tag{color:var(--brown-soft);margin-bottom:16px}
+  .offer .frontcta{font-size:1.06rem;margin-bottom:16px}
+  .offer ul{list-style:none;text-align:right;max-width:430px;margin:0 auto 18px;display:flex;flex-direction:column;gap:8px}
+  .offer li{display:flex;gap:9px;font-size:1.02rem}.offer li::before{content:"✦";color:var(--gold-deep)}
+  .price{font-size:1.05rem;color:var(--brown-soft);margin:6px 0 4px}
+  .price b{font-size:2rem;color:var(--brown);font-weight:900}
+  .closing{text-align:center;max-width:600px;margin:26px auto 0;font-size:1.02rem;color:var(--brown-soft)}
+  .capture{background:var(--brown);color:var(--cream);border-radius:16px;padding:26px 30px;margin-top:22px;text-align:center}
+  .capture h3{color:var(--white);font-size:1.3rem;margin-bottom:8px}
+  .capture p{color:rgba(239,235,224,.85);margin-bottom:14px}
+  .capture input{width:100%;max-width:360px;padding:14px 16px;border:none;border-radius:11px;font-family:'Heebo';font-size:1.05rem;margin-bottom:10px}
+  .capture .note{font-size:.78rem;color:rgba(239,235,224,.55);margin-top:8px}
+</style>
+</head>
+<body>
+
+<!-- ============ LANDING ============ -->
+<div id="landing">
+  <div class="hero"><div class="wrap">
+    <span class="kicker">בדיקת התאמה · חינם</span>
+    <h1>האם שגרת הטיפוח שלך <span class="g">באמת מתאימה</span> לעור שלך?</h1>
+    <p class="sub">את משתמשת בקרם, סרום, ניקוי, אולי גם חומרים פעילים — <span class="em">אבל האם את באמת יודעת אם הם מתאימים למה שהעור שלך צריך עכשיו?</span> עני על בדיקה קצרה וקבלי תוצאה ראשונית שתעזור לך להבין האם השגרה שלך תומכת בעור — או אולי מייבשת, מגרה או מעמיסה עליו בלי שתשימי לב.</p>
+    <div><a class="cta" href="#" onclick="return startQuiz()">להתחלת הבדיקה החינמית</a>
+      <span class="cta-sub">כ-3 דקות · ללא עלות · תוצאה מיידית</span></div>
+  </div></div>
+
+  <section class="why"><div class="wrap">
+    <h2 class="stitle">למה זה <span class="g">חשוב?</span></h2>
+    <p>הרבה נשים בוחרות מוצרים לפי המלצות, טרנדים, מחיר או הבטחה על האריזה. אבל מוצר יכול להיות איכותי — <b>ועדיין לא מתאים לעור שלך.</b></p>
+    <p>כי לא מספיק לדעת אם העור שלך "יבש", "שמן" או "מעורב". צריך להבין מה המצב שלו <b>עכשיו</b>:</p>
+    <div class="whyq"><span>מיובש?</span><span>רגיש?</span><span>עמוס בפעילים?</span><span>נוטה לפצעונים?</span><span>חסר זוהר?</span><span>זקוק להזנה?</span><span>זקוק להרגעה?</span></div>
+    <p class="soft">הבדיקה הזו תעזור לך להתחיל לעשות סדר.</p>
+  </div></section>
+
+  <section class="get"><div class="wrap">
+    <h2 class="stitle">מה תקבלי <span class="g">בסוף הבדיקה?</span></h2>
+    <div class="list">
+      <div class="item"><span class="ic">✦</span><p>כיוון ראשוני לגבי מצב העור שלך</p></div>
+      <div class="item"><span class="ic">✦</span><p>זיהוי אפשרי של חוסר התאמה בשגרה שלך</p></div>
+      <div class="item"><span class="ic">✦</span><p>רשימת רכיבים/סוגי מוצרים שכדאי לבדוק בזהירות</p></div>
+      <div class="item"><span class="ic">✦</span><p>המלצה כללית למה העור שלך כנראה צריך עכשיו</p></div>
+    </div>
+    <p class="soft">ואם תרצי לדעת בדיוק מה להכין לעור שלך — תוכלי לפתוח את המסלול המלא במוצר "קוד העור שלך".</p>
+  </div></section>
+
+  <div class="vs"><div class="wrap"><div class="row">
+    <div class="box"><b>בחינם</b>תביני מה כנראה לא מדויק בשגרה שלך.</div>
+    <div class="box"><b>בתשלום</b>תקבלי מסלול מלא עם מתכונים ופורמולות שמתאימים לך.</div>
+  </div></div></div>
+
+  <section class="final"><div class="wrap">
+    <h2 class="stitle">מוכנה לבדוק אם השגרה שלך <span class="g">עובדת בשבילך?</span></h2>
+    <a class="cta" href="#" onclick="return startQuiz()">להתחלת הבדיקה החינמית</a>
+    <span class="cta-sub">כ-3 דקות · ללא עלות</span>
+  </div></section>
+  <footer>יאלי הוד</footer>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div id="quiz" class="quiz hidden">
+  <div class="qprogress"><div class="bar"><i id="barFill"></i></div><div class="barlbl" id="barLbl"></div></div>
+  <div class="qcard" id="qcard"></div>
+</div>
+
+<!-- ============ RESULT ============ -->
+<div id="result" class="result hidden"></div>
+
+<script>
+/* משתנים: aw=awareness_gap rm=routine_mismatch ig=ingredient_gap dr=dryness_irritation_risk ao=actives_overload cl=clogging_risk cf=confidence_level */
+const Q=[
+ {t:'מתי לאחרונה עשית אבחון עור מסודר?',o:[
+   ['בחודש האחרון',{cf:2}],['בחצי השנה האחרונה',{cf:1}],['לפני יותר משנה',{aw:2}],
+   ['אף פעם לא באמת עשיתי',{aw:3}],['אני לא בטוחה מה נחשב אבחון עור',{aw:3,ig:1}]]},
+ {t:'עד כמה את יודעת להגדיר את העור שלך היום?',o:[
+   ['אני יודעת בדיוק מה סוג העור ומה מצב העור שלי',{cf:3}],['אני יודעת בערך, אבל לא בטוחה',{aw:1}],
+   ['פעם ידעתי, אבל העור שלי השתנה',{aw:2,rm:1}],['אני מתבלבלת בין יבש, מיובש, רגיש, שמן ומעורב',{aw:3,rm:1}],['אין לי מושג ברור',{aw:4}]]},
+ {t:'איך העור שלך מרגיש אחרי ניקוי?',o:[
+   ['נעים ומאוזן',{cf:1}],['מתוח וזקוק מיד לקרם',{dr:3,rm:2}],['יבש בלחיים אבל מבריק באזור ה־T',{aw:1,rm:2,dr:1}],
+   ['שומני די מהר',{rm:1,cl:1}],['צורב / אדמומי / מגורה',{dr:4,rm:2}]]},
+ {t:'מה הכי מפריע לך בעור כרגע?',o:[
+   ['יובש / מתיחה',{dr:3}],['רגישות / צריבה / אדמומיות',{dr:4}],['פצעונים / שחורים / נקבוביות סתומות',{cl:3,rm:1}],
+   ['פיגמנטציה / כתמים',{rm:1}],['קמטוטים / עור עייף / חוסר זוהר',{rm:1,dr:1}],['אני לא יודעת להגדיר',{aw:3}]]},
+ {t:'כשאת קונה מוצר טיפוח, לפי מה את בוחרת?',o:[
+   ['לפי התאמה לסוג ומצב העור שלי',{cf:2}],['לפי המלצה של מישהי',{rm:2,aw:1}],['לפי טרנד / פרסום / משפיענית',{rm:3}],
+   ['לפי מחיר או מבצע',{rm:2}],['לפי תחושה: "זה נראה לי טוב"',{rm:2,aw:1}],['לפי רכיבים, אבל אני לא תמיד מבינה אותם',{ig:2,cf:1}]]},
+ {t:'האם את יודעת מה התפקיד של כל מוצר בשגרה שלך?',o:[
+   ['כן, ברור לי למה כל מוצר שם',{cf:3}],['בערך',{rm:1}],['לא ממש',{rm:3,aw:1}],
+   ['יש לי כמה מוצרים ואני לא בטוחה מה כל אחד עושה',{rm:3,ig:1}],['אני פשוט משתמשת במה שיש לי',{rm:4}]]},
+ {t:'כמה מוצרי טיפוח את משתמשת ביום רגיל?',o:[
+   ['1–2',{cf:1}],['3–4',{}],['5 ומעלה',{ao:2,rm:2}],['זה משתנה כל הזמן',{rm:3}],['אין לי שגרה קבועה',{rm:4,aw:1}]]},
+ {t:'האם את קוראת רשימת רכיבים לפני שאת קונה מוצר?',o:[
+   ['כן, תמיד',{cf:2}],['לפעמים',{ig:1}],['אני מסתכלת אבל לא באמת מבינה',{ig:3}],
+   ['לא, אני סומכת על ההמלצה/המותג',{ig:2,rm:1}],['זה נראה לי מסובך מדי',{ig:4}]]},
+ {t:'האם את יודעת לזהות רכיבים שעלולים לייבש, לגרות או להעמיס על העור?',o:[
+   ['כן',{cf:2}],['חלקית',{ig:1}],['לא ממש',{ig:3}],['לא, וזה בדיוק מה שמבלבל אותי',{ig:4,aw:1}],
+   ['לא ידעתי שרכיבים יכולים להתאים לאחת ולא לאחרת',{ig:4,aw:2}]]},
+ {t:'האם את משתמשת בחומרים פעילים?',o:[
+   ['לא',{}],['כן, ויטמין C',{ao:1}],['כן, חומצות / פילינגים',{ao:2}],['כן, רטינול / ויטמין A',{ao:2}],
+   ['כן, ניאצינמיד / חומרים להבהרה',{ao:1}],['כן, כמה חומרים פעילים יחד',{ao:4,rm:2}],['לא בטוחה מה נחשב חומר פעיל',{ig:3,rm:2}]]},
+ {t:'האם קרה שמוצר טיפוח גרם לך לאחת מהתגובות האלו?',multi:true,o:[
+   ['יובש',{dr:2}],['צריבה',{dr:3}],['אדמומיות',{dr:3}],['קילופים',{dr:3,ao:1}],
+   ['פצעונים / נקבוביות סתומות',{cl:3}],['תחושת כובד / שמנוניות',{cl:2,rm:1}],['לא קרה לי',{cf:1}],['אני לא יודעת לקשר בין מוצר לתגובה',{aw:2,rm:2}]]},
+ {t:'האם את משתמשת באותו מוצר גם כשהעור שלך משתנה?',o:[
+   ['כן, אני לא משנה כלום',{rm:3,aw:1}],['לפעמים',{rm:1}],['אני משנה אבל לא תמיד יודעת למה',{aw:2,rm:2}],
+   ['אני מחליפה הרבה מוצרים כשמשהו לא עובד',{rm:3,dr:1}],['לא חשבתי על זה',{aw:2}]]},
+ {t:'מה המשפט שהכי מתאר אותך?',o:[
+   ['יש לי מוצרים, אבל אני לא בטוחה שהם באמת מתאימים לי',{rm:3}],['אני קונה הרבה ועדיין לא מרגישה שהעור מאוזן',{rm:3,ao:1}],
+   ['אני רוצה להבין מה יש במוצרים שלי',{ig:2}],['אני רוצה לדעת מה העור שלי באמת צריך',{aw:2}],
+   ['אני רוצה להתחיל להכין לבד אבל לא יודעת מה נכון לי',{aw:2,rm:1}],['אני רוצה להפסיק לנחש',{aw:2,ig:1,rm:1}]]}
+];
+
+const FRONT_CTA_BTN='כן, אני רוצה לפתוח את המסלול המלא שלי ←';
+const CLOSING='הבדיקה הזו נתנה לך כיוון ראשוני. אבל אם את רוצה לדעת מה באמת מתאים לעור שלך — איזה מסלול טיפוח, אילו מתכונים, אילו חומרי גלם וממה כדאי להימנע — זה בדיוק מה שתקבלי במוצר "קוד העור שלך".';
+const WARN='זהו כיוון ראשוני בלבד ואינו מחליף אבחון מקצועי או רפואי.';
+
+const RES={
+ 1:{t:'את לא באמת בטוחה מה מצב העור שלך עכשיו',
+   m:'לפי התשובות שלך, נראה שהשאלה המרכזית היא לא רק איזה מוצר להשתמש בו — אלא האם את באמת יודעת מה העור שלך צריך עכשיו.\nיכול להיות שאת יודעת להגיד "העור שלי יבש" או "העור שלי מעורב", אבל עדיין לא בטוחה אם הוא מיובש, רגיש, עמוס, חסר זוהר או פשוט זקוק לשגרה אחרת.\nוזה חשוב, כי מוצר שמתאים לעור יבש לא בהכרח מתאים לעור יבש ורגיש.',
+   c:['האם העור שלך השתנה בתקופה האחרונה','האם את בוחרת מוצרים לפי סוג עור כללי או לפי מצב העור עכשיו','האם את יודעת מה ההבדל בין יובש לחוסר לחות','האם את ממשיכה להשתמש במוצרים שלא בהכרח מתאימים לך'],
+   f:'במוצר "קוד העור שלך" תעברי אבחון מלא, תקבלי פרופיל עור ברור ומסלול טיפוח עם מתכונים ופורמולות לפי מצב העור שלך.'},
+ 2:{t:'השגרה שלך כנראה לא מספיק מותאמת',
+   m:'לפי התשובות שלך, נראה שהשגרה שלך אולי כוללת מוצרים טובים — אבל לא בטוח שהם באמת עובדים יחד או מתאימים למה שהעור שלך צריך כרגע.\nהרבה נשים משתמשות בקרם, סרום, ניקוי וחומרים פעילים — אבל לא תמיד יודעות מה התפקיד של כל מוצר, למה הוא שם, ומה כדאי לשנות כשהעור משתנה.\nמוצר יכול להיות איכותי, יקר ומומלץ — ועדיין לא להתאים לך.',
+   c:['האם את יודעת למה כל מוצר נמצא בשגרה שלך','האם יש מוצרים שחוזרים על אותה פעולה','האם הניקוי שלך מייבש או מאזן','האם את מחליפה מוצרים מתוך בלבול','האם את משתמשת באותו מוצר גם כשהעור משתנה'],
+   f:'השלב הבא הוא לא בהכרח עוד מוצר. השלב הבא הוא להבין מה מתאים לך — ואז לבחור או להכין נכון. ב"קוד העור שלך" תקבלי מסלול טיפוח ברור לפי מצב העור שלך, כולל מתכונים, פורמולות ורשימת חומרי גלם.'},
+ 3:{t:'ייתכן שיש בשגרה שלך רכיבים שמייבשים או מגרים',
+   m:'לפי התשובות שלך, ייתכן שיש בשגרה שלך מוצרים או רכיבים שלא מתאימים למצב העור שלך כרגע.\nזה לא אומר שהמוצרים שלך "רעים". זה אומר שאולי הם חזקים מדי, מייבשים מדי, מבושמים מדי, או פשוט לא מדויקים לעור שלך עכשיו.\nכשהעור מתייבש או מגורה, הוא יכול להיראות עייף יותר, מחוספס יותר, וקמטוטים יכולים להיראות מודגשים יותר.',
+   c:['Alcohol Denat / SD Alcohol גבוה ברשימת הרכיבים','ניקוי חזק שמותיר את העור מתוח','SLS במוצרי ניקוי מייבשים','Fragrance / Parfum אם העור רגיש','שמנים אתריים על עור מגורה או אדמומי','פילינג גרגרים אגרסיבי','חומצות בכמה מוצרים במקביל'],
+   cav:'לא מדובר ברכיבים "אסורים" לכולן. העניין הוא התאמה: אותו רכיב יכול להתאים לעור אחד, ולא להתאים לעור אחר או למצב עור מסוים.',
+   f:'ב"קוד העור שלך" תקבלי אבחון מלא ומסלול שמראה מה העור שלך צריך עכשיו — לחות, הרגעה, איזון, הזנה או חידוש עדין — ומה כדאי להכין בפועל.'},
+ 4:{t:'ייתכן שיש עומס חומרים פעילים בשגרה שלך',
+   m:'לפי התשובות שלך, ייתכן שהעור שלך מקבל יותר מדי חומרים פעילים או יותר מדי פעולות בבת אחת.\nחומצות, ויטמין C, רטינול, תכשירי הבהרה, פילינגים וניאצינמיד יכולים להיות נהדרים — אבל כשהם משולבים בלי סדר ברור, או כשהעור לא מוכן אליהם, הם עלולים לגרום ליובש, צריבה, קילופים, אדמומיות או תחושת עומס.\nלפעמים הבעיה היא לא שחסר לך מוצר. לפעמים הבעיה היא שיש יותר מדי.',
+   c:['כמה חומרים פעילים יש בשגרה שלך','האם את משתמשת בכמה פעילים באותו יום','האם העור צורב אחרי מריחה','האם יש קילופים או יובש מאז שהוספת מוצרים','האם את עושה פילינג לעיתים קרובות מדי','האם יש כפילות בין מוצרים'],
+   f:'במוצר "קוד העור שלך" תגלי מה העור שלך צריך קודם: הרגעה, לחות, איזון, חידוש עדין או הזנה — ותקבלי מתכונים ופורמולות שמתאימים למסלול הזה.'},
+ 5:{t:'את מודעת, אבל חסר לך דיוק מקצועי',
+   m:'לפי התשובות שלך, יש לך כבר מודעות טובה לעור ולשגרת טיפוח. את כנראה לא בוחרת לגמרי "על עיוור".\nאבל עדיין יכול להיות שחסר לך הדיוק המקצועי: לדעת למה מוצר מתאים, מתי הוא לא מתאים, איך לזהות עומס, ואיך לבחור חומרים לפי מצב העור המשתנה.\nזה השלב שבו לא מספיק לקבל עוד המלצה. צריך להבין את ההיגיון.',
+   c:['האם את יודעת מה כל מוצר עושה בשגרה שלך','האם את יודעת מה לא לשלב יחד','האם את יודעת מתי להפחית עומס','האם את יודעת לזהות מתי העור צריך לחות ולא עוד חומר פעיל','האם את יודעת להתאים מתכון או מוצר למצב עור משתנה'],
+   f:'ב"קוד העור שלך" תקבלי מסלול טיפוח ומתכונים לפי התוצאה שלך. ואם תרצי בהמשך להבין איך לבנות, לשנות ולהתאים פורמולות בעצמך — זה כבר הגשר לקורסים המלאים.'}
+};
+
+let step=0; const ans={};
+function startQuiz(){document.getElementById('landing').classList.add('hidden');
+  document.getElementById('quiz').classList.remove('hidden');step=0;render();window.scrollTo(0,0);return false;}
+function selected(i){const a=ans[step];return Array.isArray(a)?a.includes(i):a===i;}
+function canNext(){const a=ans[step];return Array.isArray(a)?a.length>0:a!=null;}
+function render(){
+  const q=Q[step];
+  document.getElementById('barFill').style.width=Math.round(step/Q.length*100)+'%';
+  document.getElementById('barLbl').textContent='שאלה '+(step+1)+' מתוך '+Q.length;
+  document.getElementById('qcard').innerHTML='<div class="qtext">'+q.t+'</div>'+
+    '<div class="qhint">'+(q.multi?'אפשר לבחור כמה תשובות':'בחרי תשובה אחת')+'</div><div class="opts">'+
+    q.o.map(function(o,i){return '<div class="opt'+(q.multi?' multi':'')+(selected(i)?' sel':'')+'" onclick="pick('+i+')"><span class="dot">'+(selected(i)?(q.multi?'✓':'●'):'')+'</span>'+o[0]+'</div>'}).join('')+
+    '</div><div class="qnav"><button class="btn btn-ghost" '+(step===0?'style="visibility:hidden"':'')+' onclick="prev()">→ חזרה</button>'+
+    '<button class="btn btn-primary" '+(canNext()?'':'disabled')+' onclick="next()">'+(step===Q.length-1?'לתוצאה שלי ✦':'הבא')+'</button></div>';
+}
+function pick(i){
+  const q=Q[step];
+  if(q.multi){ let a=Array.isArray(ans[step])?ans[step]:[]; a.includes(i)?a=a.filter(function(x){return x!==i}):a.push(i); ans[step]=a; }
+  else ans[step]=i;
+  render();
+}
+function next(){ if(step<Q.length-1){step++;render();window.scrollTo(0,0);} else showResult(); }
+function prev(){ if(step>0){step--;render();window.scrollTo(0,0);} }
+
+function resolve(s){
+  if(s.ao>=5) return 4;
+  if(s.dr>=7) return 3;
+  if(s.aw>=8) return 1;
+  if(s.rm>=8) return 2;
+  if(s.ig>=8) return s.dr>=4?3:5;
+  if(s.cf>=6 && s.dr<7 && s.ao<5) return 5;
+  const order=['ao','dr','rm','ig','aw','cf'];
+  let top=order[0]; order.forEach(function(k){if(s[k]>s[top])top=k;});
+  const map={ao:4,dr:3,rm:2,ig:(s.dr>=4?3:5),aw:1,cf:5};
+  return map[top];
+}
+
+function showResult(){
+  const s={aw:0,rm:0,ig:0,dr:0,ao:0,cl:0,cf:0};
+  Q.forEach(function(q,i){
+    const a=ans[i]; const idxs=Array.isArray(a)?a:[a];
+    idxs.forEach(function(ix){const sc=q.o[ix][1];for(const k in sc)s[k]+=sc[k];});
+  });
+  const r=RES[resolve(s)];
+  document.getElementById('quiz').classList.add('hidden');
+  const el=document.getElementById('result');el.classList.remove('hidden');
+  el.innerHTML=
+    '<div class="rtop">✦ התוצאה הראשונית שלך</div><div class="rtitle">'+r.t+'</div>'+
+    '<div class="rcard"><p class="rmsg">'+r.m+'</p>'+
+      '<div class="rcheck"><h4>מה כדאי לבדוק במוצרים/שגרה שלך?</h4><ul>'+r.c.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'+
+      (r.cav?'<p class="rcaveat">'+r.cav+'</p>':'')+'</div>'+
+      '<p class="rwarn">'+WARN+'</p>'+
+    '</div>'+
+    '<div class="offer"><h3>קוד העור שלך</h3>'+
+      '<p class="tag">גלי מה העור שלך באמת צריך — וקבלי מסלול טיפוח, מתכונים ופורמולות טבעיות לפי מצב העור שלך.</p>'+
+      '<p class="frontcta">'+r.f+'</p>'+
+      '<ul><li>אבחון עור מלא ומעמיק</li><li>פרופיל עור אישי</li><li>מסלול טיפוח לפי סוג ומצב העור</li>'+
+      '<li>3–5 מתכונים טבעיים להתחלה</li><li>פורמולות לפי מצב העור</li><li>רשימת חומרי גלם מומלצת</li>'+
+      '<li>דגשי שימוש, שימור ואחסון</li><li>PDF מסודר להורדה לפי המסלול שלך</li></ul>'+
+      '<div class="price">מחיר השקה לנרשמות מהבדיקה: <b>97 ₪</b></div>'+
+      '<button class="btn btn-primary" style="margin-top:12px" onclick="openFront()">'+FRONT_CTA_BTN+'</button></div>'+
+    '<p class="closing">'+CLOSING+'</p>'+
+    '<div class="capture"><h3>עוד לא מוכנה? קבלי את המדריך</h3><p>"7 סימנים שהמוצרים שלך לא באמת מתאימים לעור שלך" — ישר למייל.</p>'+
+      '<input type="email" id="lead" placeholder="האימייל שלך"><br>'+
+      '<button class="btn btn-primary" onclick="submitLead()">שלחו לי את המדריך ←</button>'+
+      '<div class="note">🔧 דמו — עדיין לא מחובר ל-Flashy. החיבור בשלב מאוחר יותר.</div></div>';
+  window.scrollTo(0,0);
+}
+function openFront(){ alert('דמו: כאן ייפתח מוצר הפרונט "קוד העור שלך" (פאזה 2).'); }
+function submitLead(){ alert('דמו: כאן המייל ייכנס ל-Flashy ויישלח המדריך (שלב מאוחר יותר).'); }
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מבחן המגירה — יאלי הוד</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;
+    --gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--shadow:0 12px 44px rgba(108,83,54,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--brown);line-height:1.75;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+  .hidden{display:none!important}
+  .hero{background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 60%,var(--cream-deep));
+    text-align:center;padding:66px 0 54px;border-bottom:1px solid rgba(194,166,110,.3)}
+  .kicker{display:inline-block;background:rgba(194,166,110,.18);color:var(--gold-deep);
+    font-weight:700;font-size:.82rem;letter-spacing:1.5px;padding:8px 18px;border-radius:999px;margin-bottom:22px}
+  h1{font-size:2.9rem;font-weight:900;line-height:1.15;margin-bottom:14px}
+  h1 .g{color:var(--gold-deep)}
+  .hsub{font-size:1.25rem;font-weight:700;color:var(--brown);max-width:600px;margin:0 auto 20px}
+  .htext{font-size:1.08rem;color:var(--brown-soft);max-width:600px;margin:0 auto}
+  .htext b{color:var(--brown)}
+  .cta{display:inline-block;font-family:'Heebo';font-weight:800;font-size:1.2rem;cursor:pointer;
+    border:none;border-radius:14px;padding:18px 46px;background:var(--brown);color:var(--white);
+    margin-top:28px;transition:.2s;box-shadow:0 8px 24px rgba(108,83,54,.25);text-decoration:none}
+  .cta:hover{background:var(--gold-deep);transform:translateY(-2px)}
+  .cta-sub{display:block;margin-top:12px;font-size:.9rem;color:var(--brown-soft)}
+  .types4{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:600px;margin:30px auto 0}
+  .types4 span{background:var(--white);border:1px solid var(--cream-deep);border-radius:999px;padding:9px 18px;font-weight:700;color:var(--brown-soft)}
+
+  .quiz{max-width:680px;margin:0 auto;padding:36px 22px 80px}
+  .qprogress{position:sticky;top:0;background:var(--cream);padding:14px 0;z-index:5}
+  .bar{height:7px;background:var(--cream-deep);border-radius:99px;overflow:hidden}
+  .bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));width:0;transition:width .35s}
+  .barlbl{text-align:center;font-size:.85rem;color:var(--brown-soft);margin-top:8px;font-weight:600}
+  .qcard{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:36px 32px;margin-top:14px;animation:fade .3s}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+  .qtext{font-size:1.45rem;font-weight:800;margin-bottom:6px;line-height:1.3}
+  .qhint{font-size:.9rem;color:var(--brown-soft);margin-bottom:20px}
+  .opts{display:flex;flex-direction:column;gap:11px}
+  .opt{border:1.5px solid var(--cream-deep);background:var(--cream);border-radius:12px;padding:15px 18px;
+    cursor:pointer;font-size:1.05rem;font-weight:600;transition:.16s;display:flex;align-items:center;gap:12px}
+  .opt:hover{border-color:var(--gold);background:var(--white)}
+  .opt.sel{border-color:var(--gold-deep);background:rgba(194,166,110,.15);box-shadow:0 0 0 3px rgba(194,166,110,.14)}
+  .opt .dot{width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem}
+  .opt.multi .dot{border-radius:6px}
+  .opt.sel .dot{background:var(--gold-deep);border-color:var(--gold-deep)}
+  .qnav{display:flex;justify-content:space-between;margin-top:26px;align-items:center}
+  .btn{font-family:'Heebo';font-weight:800;font-size:1.05rem;cursor:pointer;border:none;border-radius:11px;padding:14px 30px;transition:.2s}
+  .btn-primary{background:var(--brown);color:var(--white)}.btn-primary:hover{background:var(--gold-deep)}
+  .btn-primary:disabled{opacity:.35;cursor:not-allowed}
+  .btn-ghost{background:transparent;color:var(--brown-soft);font-weight:700}
+  .err{color:#b5654a;font-weight:600;font-size:.92rem;margin-top:10px;min-height:1.2em}
+
+  /* lead form */
+  .pane{max-width:560px;margin:0 auto;padding:60px 22px 90px;text-align:center;animation:fade .35s}
+  .pane h2{font-size:2rem;font-weight:900;margin-bottom:12px}
+  .pane p{color:var(--brown-soft);font-size:1.08rem;margin-bottom:24px}
+  .field{text-align:right;margin-bottom:14px}
+  .field label{display:block;font-weight:700;margin-bottom:6px;font-size:.95rem}
+  .field input{width:100%;padding:14px 16px;border:1.5px solid var(--cream-deep);border-radius:11px;font-family:'Heebo';font-size:1.05rem;background:var(--white)}
+  .field input:focus{outline:none;border-color:var(--gold)}
+  .consent{display:flex;gap:10px;text-align:right;font-size:.9rem;color:var(--brown-soft);margin:8px 0 18px;cursor:pointer}
+  .consent input{margin-top:5px;flex:none}
+  .loading{text-align:center;padding:120px 22px}
+  .spinner{width:44px;height:44px;border:4px solid var(--cream-deep);border-top-color:var(--gold-deep);border-radius:50%;margin:0 auto 22px;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* result */
+  .result{max-width:680px;margin:0 auto;padding:40px 22px 90px;animation:fade .4s}
+  .rtop{text-align:center;color:var(--gold-deep);font-weight:700;letter-spacing:1px;margin-bottom:6px}
+  .rtitle{font-size:2.1rem;font-weight:900;text-align:center;margin-bottom:22px;line-height:1.25}
+  .rcard{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:34px 34px;margin-bottom:18px}
+  .rtext{font-size:1.1rem;white-space:pre-line;margin-bottom:18px}
+  .mirror{background:rgba(194,166,110,.14);border-right:4px solid var(--gold-deep);border-radius:10px;
+    padding:16px 20px;font-weight:800;font-size:1.15rem;color:var(--brown);margin-bottom:18px}
+  .rcard h4{font-size:1.1rem;font-weight:800;margin-bottom:10px}
+  .rcard ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .rcard li{display:flex;gap:10px;font-size:1.02rem}.rcard li::before{content:"◇";color:var(--gold-deep);font-weight:800}
+  .second{background:var(--cream);border-radius:14px;padding:22px 26px;margin-bottom:18px}
+  .second b{color:var(--gold-deep)}
+  .closing{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:30px 32px}
+  .closing h3{font-size:1.4rem;font-weight:900;margin-bottom:12px}
+  .closing p{margin-bottom:14px}
+  .offer{background:linear-gradient(160deg,var(--white),var(--cream-deep));border:2px solid var(--gold);
+    border-radius:18px;padding:28px 30px;margin-top:18px;text-align:center}
+  .offer p{font-size:1.08rem;margin-bottom:16px}
+  footer{text-align:center;padding:28px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700}
+  @media(max-width:560px){h1{font-size:2.1rem}.rtitle{font-size:1.6rem}.qtext{font-size:1.25rem}}
+</style>
+</head>
+<body>
+
+<!-- ===== INTRO ===== -->
+<div id="landing">
+  <div class="hero"><div class="wrap">
+    <span class="kicker">מגנט חינם · מבחן מודעות</span>
+    <h1>מבחן <span class="g">המגירה</span></h1>
+    <p class="hsub">מה את באמת יודעת על מוצרי הטיפוח שאת מורחת כל יום?</p>
+    <p class="htext">פתחי רגע את מגירת הטיפוח שלך. כמה מוצרים יש שם? בכמה מהם את באמת משתמשת? האם את יודעת מה כל אחד עושה? <b>והאם את בטוחה שהם באמת מתאימים למה שהעור שלך צריך עכשיו?</b><br><br>השאלון הבא יעזור לך להבין מה דפוס הבחירה שלך בטיפוח — האם את אוגרת מוצרים, משתמשת מתוך הרגל, קונה לפי הבטחות, או אולי עושה הרבה בשביל העור אבל בלי שיטה ברורה. זה לא אבחון עור מקצועי, אלא מבחן מודעות קצר שיעזור לך להתחיל לעשות סדר.</p>
+    <div class="types4"><span>האוגרת המתלבטת</span><span>המשתמשת האוטומטית</span><span>הקונה לפי הבטחה</span><span>המעמיסה החרוצה</span></div>
+    <div><a class="cta" href="#" onclick="return startQuiz()">להתחלת מבחן המגירה</a>
+      <span class="cta-sub">15 שאלות · כ-3 דקות · תוצאה אישית</span></div>
+  </div></div>
+  <footer>יאלי הוד</footer>
+</div>
+
+<!-- ===== QUIZ ===== -->
+<div id="quiz" class="quiz hidden">
+  <div class="qprogress"><div class="bar"><i id="barFill"></i></div><div class="barlbl" id="barLbl"></div></div>
+  <div class="qcard" id="qcard"></div>
+</div>
+
+<!-- ===== LEAD FORM ===== -->
+<div id="leadform" class="pane hidden">
+  <h2>התוצאה שלך מוכנה ✦</h2>
+  <p>ענית על כל השאלות, והתוצאה שלך כבר מחושבת. השאירי שם ומייל, ואשלח לך את תוצאת "מבחן המגירה" יחד עם הסבר קצר שיעזור לך להבין מה דפוס הבחירה שלך בטיפוח — ומה כדאי לך לבדוק מחדש במגירה.</p>
+  <div class="field"><label>שם פרטי</label><input type="text" id="fName" placeholder="השם שלך"></div>
+  <div class="field"><label>מייל</label><input type="email" id="fEmail" placeholder="האימייל שלך"></div>
+  <div class="field"><label>טלפון / וואטסאפ <span style="font-weight:400;color:var(--brown-soft)">(אופציונלי)</span></label><input type="tel" id="fPhone" placeholder="050-0000000"></div>
+  <label class="consent"><input type="checkbox" id="fConsent"><span>אני מאשרת לקבל מיילים ועדכונים מיאלי הוד בנושא טיפוח, קוסמטיקה טבעית, חומרי גלם וקורסים. ניתן להסיר הרשמה בכל עת.</span></label>
+  <div class="err" id="leadErr"></div>
+  <button class="btn btn-primary" style="width:100%" onclick="submitLead()">הציגי לי את התוצאה ←</button>
+  <div style="font-size:.78rem;color:var(--brown-soft);margin-top:12px">🔧 דמו — עדיין לא מחובר ל-Flashy. החיבור בשלב מאוחר יותר.</div>
+</div>
+
+<!-- ===== LOADING ===== -->
+<div id="loading" class="loading hidden">
+  <div class="spinner"></div>
+  <p style="font-size:1.1rem;font-weight:700">בודקת את דפוס הבחירה שלך...</p>
+  <p style="color:var(--brown-soft)">רגע קטן, התוצאה שלך כבר מוכנה.</p>
+</div>
+
+<!-- ===== RESULT ===== -->
+<div id="result" class="result hidden"></div>
+
+<script>
+/* טיפוסים: h=hoarder a=automatic p=promiseBuyer o=overloader */
+const TYPES={
+ h:{name:'האוגרת המתלבטת',
+   full:'יש לך לא מעט מוצרי טיפוח, אבל לא תמיד ברור לך למה כל אחד מהם נמצא שם.\nיכול להיות שיש במגירה שלך קרמים, סרומים, מסכות, מוצרים שקנית במבצע, מוצרים שהמליצו לך עליהם, מוצרים שנראו מבטיחים — וגם כאלה שאת כבר לא באמת משתמשת בהם, אבל עדיין לא מצליחה להוציא.\nהעניין הוא לא שאין לך מוצרים. העניין הוא שאין לך מספיק סדר.\nכשאין שיטה ברורה, קל מאוד להמשיך לקנות, לנסות, להחליף, להשאיר "ליתר ביטחון" — ועדיין לא לדעת מה באמת מתאים לעור שלך.',
+   mirror:'המגירה שלך לא צריכה עוד מוצר. היא צריכה מיון חכם.',
+   u:['מה כל מוצר אמור לעשות','במה את באמת משתמשת','מה כפול או מיותר','מה נשאר רק כי חבל לזרוק','ומה באמת תומך בצרכים של העור שלך עכשיו'],
+   sec:'יכול להיות שיש אצלך גם לא מעט מוצרים שנשארו במגירה בלי תפקיד ברור. שווה לבדוק מה באמת בשימוש, מה כפול, ומה נשאר רק כי חבל לזרוק.'},
+ a:{name:'המשתמשת האוטומטית',
+   full:'יש לך שגרת טיפוח יחסית קבועה, וזה דווקא יכול להיות דבר טוב.\nאבל לפי התשובות שלך, יכול להיות שאת ממשיכה להשתמש במוצרים מתוך הרגל — בלי לעצור ולבדוק האם הם עדיין מתאימים לעור שלך היום.\nהעור משתנה עם גיל, עונות, סטרס, הורמונים, תזונה, מזג אוויר, תרופות, שינה ואורח חיים.\nולכן מוצר שהתאים לך בעבר לא בהכרח נותן לעור שלך את מה שהוא צריך עכשיו.',
+   mirror:'זה שמוצר עבד לך פעם לא אומר שהוא הבחירה המדויקת עבורך היום.',
+   u:['מה מצב העור שלך כרגע','האם השגרה שלך עדיין רלוונטית','האם חסרה לך לחות, הזנה, שיקום או איזון','האם את משתמשת במוצרים מתוך בחירה או מתוך הרגל','האם הגיע הזמן לעדכן את השגרה בצורה חכמה'],
+   sec:'יכול להיות שאת ממשיכה עם חלק מהמוצרים מתוך הרגל, גם אם את כבר לא בטוחה שהם מתאימים למה שהעור שלך צריך עכשיו.'},
+ p:{name:'הקונה לפי הבטחה',
+   full:'לפי התשובות שלך, את כנראה מושפעת לא מעט מהבטחות של מוצרים: אנטי־אייג׳ינג, זוהר, מיצוק, לחות, עור חלק, עור קורן, מוצר יוקרתי או המלצה שנשמעה משכנעת.\nוזה טבעי. עולם הטיפוח בנוי בדיוק על זה.\nאבל הבעיה היא שהאריזה מספרת סיפור — ורשימת הרכיבים מספרת משהו אחר.\nכדי לבחור נכון, צריך לדעת להסתכל מעבר לשם המוצר, למחיר, להמלצה או לתיאור השיווקי, ולהבין מה באמת יש בפנים.',
+   mirror:'לא כל מוצר שנראה מקצועי באמת מתאים לעור שלך.',
+   u:['איך לקרוא את רשימת הרכיבים','איך לזהות רכיבים מרכזיים','איך להבין מה באמת פעיל במוצר','איך לא להתבלבל מהבטחות שיווקיות','איך לבחור מוצר לפי צורך אמיתי ולא לפי סיפור מכירה'],
+   sec:'יכול להיות שחלק מהבחירות שלך מושפעות מהמלצות, מותגים, מחיר, אריזה או מילים יפות — יותר מאשר מהבנה אמיתית של הרכיבים.'},
+ o:{name:'המעמיסה החרוצה',
+   full:'את לא מזניחה את העור שלך. להפך.\nאת מתעניינת, קוראת, מנסה, מוסיפה מוצרים, בודקת חומרים פעילים ורוצה לראות תוצאה.\nאבל לפי התשובות שלך, יכול להיות שאת עושה הרבה — בלי שיטה מספיק ברורה.\nכשמשלבים כמה חומרים פעילים, סרומים, חומצות, ויטמין C, רטינול, ניאצינאמיד או רכיבי הבהרה, חשוב להבין לא רק מה כל חומר עושה, אלא גם איך משלבים, באיזה סדר, באיזו תדירות, ומה העור שלך באמת צריך עכשיו.\nלפעמים עוד מוצר לא פותר את הבעיה. לפעמים הוא פשוט מוסיף עוד עומס.',
+   mirror:'העור שלך לא תמיד צריך יותר. לפעמים הוא צריך מדויק יותר.',
+   u:['מה כל חומר פעיל עושה','מה אפשר לשלב ומה עדיף להפריד','מתי השגרה תומכת בעור ומתי היא מעמיסה','איך לזהות עומס לפני שהעור מגיב','איך לבנות שגרה חכמה יותר, פשוטה יותר ומדויקת יותר'],
+   sec:'יכול להיות שאת משקיעה הרבה בעור, אבל לא תמיד בטוחה מה באמת נחוץ, מה אפשר לשלב, ומה כבר מתחיל להיות יותר מדי.'}
+};
+
+const Q=[
+ {t:'כמה מוצרי טיפוח לפנים יש לך כרגע במגירה / באמבטיה?',o:[
+   ['1–3 מוצרים',{a:1}],['4–6 מוצרים',{}],['7–10 מוצרים',{h:2,o:1}],['יותר מ־10 מוצרים',{h:3,o:1}],['האמת? אני כבר לא באמת יודעת',{h:3}]]},
+ {t:'בכמה מהם את באמת משתמשת בשבוע רגיל?',o:[
+   ['כמעט בכולם',{o:1}],['בערך בחצי',{h:2}],['רק ב־2–3 קבועים',{a:2}],['זה משתנה כל הזמן',{o:2,h:1}],['אני קונה יותר ממה שאני באמת משתמשת',{h:3,p:1}]]},
+ {t:'האם את יודעת מה המטרה של כל מוצר שיש לך?',o:[
+   ['כן, ברור לי בדיוק מה כל מוצר עושה',{}],['בערך, אבל לא לגבי כולם',{h:1,a:1}],['לא ממש, חלק פשוט נראים לי טובים',{p:2,h:1}],['לא, יש לי מוצרים שאני לא באמת יודעת למה קניתי',{h:3,p:1}],['אני יודעת בעיקר לפי מה שכתוב על האריזה',{p:3}]]},
+ {t:'כשאת קונה מוצר טיפוח חדש, מה בדרך כלל משפיע עלייך הכי הרבה?',o:[
+   ['המלצה של מישהי',{p:2}],['פרסום / משפיענית / מותג מוכר',{p:3}],['מחיר או מבצע',{p:1,h:1}],['מה שכתוב על האריזה: אנטי־אייג׳ינג, זוהר, מיצוק, לחות',{p:3}],['רשימת הרכיבים והתאמה לצרכים שלי',{}],['תחושה שחסר לי עוד משהו בשגרה',{o:3}]]},
+ {t:'האם את יודעת מה סוג העור שלך?',o:[
+   ['כן, ואני בטוחה בזה',{}],['בערך, אבל לפעמים אני מתבלבלת',{a:1,p:1}],['חשבתי שאני יודעת, אבל העור שלי השתנה',{a:3}],['לא ממש',{p:1,a:1}],['אני יודעת איך הוא מרגיש, אבל לא יודעת להגדיר אותו',{a:2}]]},
+ {t:'האם את יודעת מה העור שלך צריך עכשיו?',o:[
+   ['כן, ברור לי מה חסר לו ומה מתאים לו',{}],['בערך, אבל אני לא תמיד יודעת מה לבחור',{a:1,p:1}],['לא בטוחה — לפעמים הוא יבש, לפעמים שומני, לפעמים רגיש',{a:2,o:1}],['לא, אני בעיקר מנסה מוצרים ורואה מה קורה',{o:2,p:1}],['אני מרגישה שהוא השתנה, אבל לא מבינה למה',{a:3}]]},
+ {t:'האם את יודעת איך משתמשים נכון בכל מוצר שיש לך?',o:[
+   ['כן, אני יודעת מתי, כמה ובאיזה סדר',{}],['בערך, אבל לא תמיד בטוחה בסדר השימוש',{o:1,a:1}],['לא תמיד יודעת מה בבוקר ומה בערב',{o:2}],['לא בטוחה מה מותר לשלב עם מה',{o:3}],['אני פשוט מורחת לפי מה שנראה לי',{p:1,a:1,o:1}]]},
+ {t:'באילו חומרים פעילים את משתמשת כרגע?',multi:true,active:true,o:[
+   ['חומצה היאלורונית',{}],['ויטמין C',{o:1}],['רטינול / רטינל / נגזרות ויטמין A',{o:1}],['ניאצינאמיד',{o:1}],['חומצות AHA / BHA / PHA',{o:1}],['פפטידים',{o:1}],['בקוצ׳יול',{o:1}],['חומצה אזלאית / רכיבי הבהרה',{o:1}],['סרמידים / רכיבי שיקום מחסום עור',{}],['אני לא בטוחה',{p:2,a:1}],['אני לא משתמשת בחומרים פעילים',{a:1}],['אני משתמשת בכמה, אבל לא תמיד יודעת מה כל אחד עושה',{o:3,p:1}]]},
+ {t:'אם את משתמשת בחומרים פעילים — האם את יודעת למה כל אחד מהם נמצא בשגרה שלך?',o:[
+   ['כן, לכל חומר פעיל יש מטרה ברורה',{}],['חלק כן, חלק לא',{o:1,p:1}],['אני יודעת שהם טובים לעור, אבל לא בדיוק למה',{p:2}],['לא ממש',{p:2,o:1}],['אני משתמשת כי המליצו לי / כי ראיתי שזה טוב',{p:3}]]},
+ {t:'האם את יודעת מה לא כדאי לשלב יחד בשגרת הטיפוח?',o:[
+   ['כן, אני יודעת לבנות שילובים בצורה בטוחה',{}],['בערך, אבל עדיין מתלבטת',{o:1}],['לא ממש',{o:2}],['אני חוששת לשלב חומרים פעילים',{a:1,o:1}],['אני משלבת כמה דברים ולא בטוחה אם זה נכון',{o:3}]]},
+ {t:'האם את קוראת את רשימת הרכיבים לפני שאת קונה מוצר?',o:[
+   ['כן, תמיד',{}],['לפעמים',{p:1}],['אני מסתכלת, אבל לא באמת מבינה מה כתוב שם',{p:3}],['לא, אני בעיקר קוראת את ההבטחות על האריזה',{p:3}],['אני רוצה לדעת לקרוא רכיבים, אבל זה מרגיש לי מסובך',{p:2}]]},
+ {t:'כשאת רואה רכיב כמו Mineral Oil, SLS, Alcohol Denat או Fragrance — את יודעת מה המשמעות שלו?',o:[
+   ['כן, אני יודעת לזהות רכיבים כאלה ולהבין אם הם מתאימים לי',{}],['אני מכירה חלק מהם',{p:1}],['שמעתי עליהם, אבל לא יודעת באמת מה לעשות עם זה',{p:2}],['לא',{p:3}],['אני בכלל לא יודעת איפה לחפש אותם ברשימת הרכיבים',{p:3}]]},
+ {t:'האם יש לך מוצרים שאת ממשיכה להשתמש בהם למרות שאת לא בטוחה שהם עושים לך טוב?',o:[
+   ['כן, כי הם היו יקרים',{p:2,a:1}],['כן, כי חבל לי לזרוק',{h:3}],['כן, כי אני לא יודעת במה להחליף אותם',{a:2,p:1}],['לפעמים',{a:1}],['לא, אני משתמשת רק במה שאני בטוחה שמתאים לי',{}]]},
+ {t:'איזו תחושה הכי מתארת אותך מול שגרת הטיפוח שלך?',o:[
+   ['יש לי יותר מדי מוצרים ואני צריכה סדר',{h:3}],['אני משתמשת באותם מוצרים כבר שנים ולא יודעת אם הם עדיין מתאימים',{a:3}],['אני קונה לפי המלצות, הבטחות או טרנדים',{p:3}],['אני עושה הרבה בשביל העור, אבל לא בטוחה אם אני עוזרת או מעמיסה',{o:3}],['אני די בטוחה בשגרה שלי',{}]]},
+ {t:'מה הכי היית רוצה לדעת בסוף מבחן המגירה?',o:[
+   ['אילו מוצרים מיותרים לי',{h:2}],['אילו מוצרים אולי לא מתאימים לי',{a:2}],['איך להבין מה כל מוצר באמת עושה',{p:1,a:1}],['איך לקרוא תווית ורכיבים בלי להתבלבל',{p:2}],['איך לבנות שגרת טיפוח פשוטה ומדויקת יותר',{a:1,o:1}],['איך לדעת מה העור שלי באמת צריך עכשיו',{a:2}]]}
+];
+
+let step=0; const ans={};
+function selected(i){const a=ans[step];return Array.isArray(a)?a.includes(i):a===i;}
+function canNext(){const a=ans[step];return Array.isArray(a)?a.length>0:a!=null;}
+function startQuiz(){document.getElementById('landing').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');step=0;render();window.scrollTo(0,0);return false;}
+function render(){
+  const q=Q[step];
+  document.getElementById('barFill').style.width=Math.round(step/Q.length*100)+'%';
+  document.getElementById('barLbl').textContent='שאלה '+(step+1)+' מתוך '+Q.length;
+  document.getElementById('qcard').innerHTML='<div class="qtext">'+q.t+'</div>'+
+    '<div class="qhint">'+(q.multi?'אפשר לבחור כמה תשובות':'בחרי תשובה אחת')+'</div><div class="opts">'+
+    q.o.map(function(o,i){return '<div class="opt'+(q.multi?' multi':'')+(selected(i)?' sel':'')+'" onclick="pick('+i+')"><span class="dot">'+(selected(i)?(q.multi?'✓':'●'):'')+'</span>'+o[0]+'</div>'}).join('')+
+    '</div><div class="err" id="qErr"></div><div class="qnav"><button class="btn btn-ghost" '+(step===0?'style="visibility:hidden"':'')+' onclick="prev()">→ חזרה</button>'+
+    '<button class="btn btn-primary" '+(canNext()?'':'disabled')+' onclick="next()">'+(step===Q.length-1?'לסיום ✦':'הבא')+'</button></div>';
+}
+function pick(i){const q=Q[step];
+  if(q.multi){let a=Array.isArray(ans[step])?ans[step]:[];a.includes(i)?a=a.filter(function(x){return x!==i}):a.push(i);ans[step]=a;}
+  else ans[step]=i;
+  render();
+}
+function next(){ if(!canNext()){document.getElementById('qErr').textContent=Q[step].multi?'בחרי לפחות אפשרות אחת כדי להמשיך.':'בחרי תשובה אחת כדי להמשיך.';return;}
+  if(step<Q.length-1){step++;render();window.scrollTo(0,0);} else showLead(); }
+function prev(){ if(step>0){step--;render();window.scrollTo(0,0);} }
+
+function showLead(){document.getElementById('quiz').classList.add('hidden');document.getElementById('leadform').classList.remove('hidden');window.scrollTo(0,0);}
+function submitLead(){
+  const name=document.getElementById('fName').value.trim();
+  const email=document.getElementById('fEmail').value.trim();
+  const consent=document.getElementById('fConsent').checked;
+  const err=document.getElementById('leadErr');
+  if(!name){err.textContent='בבקשה מלאי שם.';return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){err.textContent='נראה שהמייל לא תקין. בדקי שוב ונסי מחדש.';return;}
+  if(!consent){err.textContent='כדי לקבל את התוצאה, יש לאשר קבלת מיילים.';return;}
+  err.textContent='';
+  /* דמו — כאן הפרטים ייכנסו ל-Flashy (שלב מאוחר) */
+  document.getElementById('leadform').classList.add('hidden');
+  document.getElementById('loading').classList.remove('hidden');
+  window.scrollTo(0,0);
+  setTimeout(showResult,1400);
+}
+
+function compute(){
+  const s={h:0,a:0,p:0,o:0};
+  Q.forEach(function(q,i){const a=ans[i];const idxs=Array.isArray(a)?a:[a];
+    idxs.forEach(function(ix){const sc=q.o[ix][1];for(const k in sc)s[k]+=sc[k];});
+    if(q.active && Array.isArray(a)){
+      const activeIdx=[1,2,3,4,5,6,7]; // ויטמין C .. חומצה אזלאית
+      const chosen=a.filter(function(x){return activeIdx.includes(x)});
+      if(chosen.length>=4) s.o+=3;
+      if(a.includes(2)&&a.includes(4)) s.o+=2; // רטינול + חומצות
+    }
+  });
+  return s;
+}
+function showResult(){
+  const s=compute();
+  const order=['o','p','a','h'];
+  const arr=Object.keys(TYPES).map(function(k){return {k:k,score:s[k]}});
+  arr.sort(function(x,y){return (y.score-x.score) || (order.indexOf(x.k)-order.indexOf(y.k))});
+  const lead=arr[0], second=arr[1], gap=lead.score-second.score;
+  const L=TYPES[lead.k], S=TYPES[second.k];
+  const secHead = gap<=2 ? ('יש אצלך שילוב די ברור גם עם <b>'+S.name+'</b>') : ('ויש לך גם נטייה קלה ל־<b>'+S.name+'</b>');
+
+  document.getElementById('loading').classList.add('hidden');
+  const el=document.getElementById('result');el.classList.remove('hidden');
+  el.innerHTML=
+    '<div class="rtop">✦ תוצאת מבחן המגירה</div>'+
+    '<div class="rtitle">הטיפוס המוביל שלך:<br>'+L.name+'</div>'+
+    '<div class="rcard"><div class="rtext">'+L.full+'</div>'+
+      '<div class="mirror">'+L.mirror+'</div>'+
+      '<h4>מה כדאי לך להבין עכשיו:</h4><ul>'+L.u.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>'+
+    '<div class="second">'+secHead+'<br>כלומר, '+S.sec+'</div>'+
+    '<div class="closing"><h3>מה עכשיו?</h3>'+
+      '<p>מבחן המגירה הוא רק ההתחלה. הוא לא נועד להגיד לך לזרוק הכול, וגם לא לתת לך אבחון עור מלא. המטרה שלו היא לעצור רגע ולשאול: האם את באמת יודעת מה יש במוצרים שלך? האם את יודעת למה את משתמשת בהם? האם את מבינה מה כל חומר פעיל עושה? והאם את בטוחה שהשגרה שלך מתאימה למה שהעור שלך צריך עכשיו?</p>'+
+      '<p>אם גילית שיש לך פערים — זה לא אומר שעשית משהו לא נכון. זה אומר שהגיע הזמן לעבור מבחירה לפי ניחוש לבחירה לפי הבנה.</p>'+
+      '<div class="offer"><p>רוצה להבין מה העור שלך באמת צריך ואיך לבחור מוצרים בצורה חכמה יותר? בדיוק בשביל זה יצרתי את <b>קוד העור</b> — תהליך קצר, ברור ומעשי שיעזור לך להבין את העור שלך, את המוצרים שלך, ואת הדרך לבנות שגרת טיפוח מדויקת יותר.</p>'+
+        '<button class="btn btn-primary" onclick="openFront()">אני רוצה להבין את קוד העור שלי ←</button></div>'+
+    '</div>';
+  window.scrollTo(0,0);
+}
+function openFront(){ alert('דמו: כאן ייפתח מוצר הפרונט "קוד העור שלך" (פאזה 2).'); }
+</script>
+</body>
+</html>

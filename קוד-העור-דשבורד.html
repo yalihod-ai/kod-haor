@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קוד העור — הבית שלי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;--gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--shadow:0 10px 40px rgba(108,83,54,.10)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Heebo',sans-serif;background:#ffffff;color:var(--brown);line-height:1.7}
+  h1,h2,h3{font-family:'Heebo';font-weight:800}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px}
+  .logobar{text-align:center;padding:20px 0 4px}.logobar img{height:52px}
+  header{text-align:center;padding:14px 0 20px}
+  .kick{display:inline-block;background:rgba(194,166,110,.16);color:var(--gold-deep);font-weight:700;letter-spacing:1.5px;font-size:.82rem;padding:7px 16px;border-radius:999px;margin-bottom:14px}
+  header h1{font-size:2.5rem;font-weight:900}header h1 .g{color:var(--gold-deep)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;padding:34px 0 70px}
+  .tile{background:#fff;border:1px solid var(--cream-deep);border-radius:18px;box-shadow:var(--shadow);padding:28px 26px;text-decoration:none;color:var(--brown);transition:.18s;display:flex;flex-direction:column;min-height:200px;border-top:5px solid var(--gold)}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(108,83,54,.18)}
+  .tile.locked,.tile.soon{opacity:.55;border-top-color:var(--cream-deep);cursor:not-allowed}
+  .tile.locked:hover,.tile.soon:hover{transform:none;box-shadow:var(--shadow)}
+  .tile .ic{font-size:2.2rem;margin-bottom:12px}
+  .tile h3{font-size:1.4rem;margin-bottom:8px}
+  .tile p{color:var(--brown-soft);font-size:.98rem;flex:1}
+  .tile .go{margin-top:14px;font-weight:800;color:var(--gold-deep)}
+  .tile .badge{font-size:.72rem;font-weight:700;background:var(--cream);color:var(--brown-soft);border-radius:99px;padding:3px 10px;align-self:flex-start;margin-bottom:10px}
+  .tile .badge.hot{background:var(--gold-deep);color:#fff}
+  footer{text-align:center;padding:26px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700}
+</style>
+</head>
+<body>
+<div class="logobar"><img src="logo.png" alt="יאלי הוד"></div>
+<header><div class="wrap">
+  <span class="kick">✦ קוד העור</span>
+  <h1>ברוכה הבאה ל<span class="g">קוד העור</span></h1>
+</div></header>
+
+<div class="wrap"><div class="grid" id="grid"></div></div>
+<footer>יאלי הוד</footer>
+
+<script>
+// האם השלימה אבחון? (נשמר מדף האבחון)
+var done = localStorage.getItem('kh_state');
+var routeUnlocked = !!done;
+
+var tiles = [
+  {ic:'🔍', title:'האבחון שלי', desc:'15 שאלות קצרות שמזהות את מצב העור המרכזי שלך. מתחילות כאן.', href:'קוד-העור-אבחון.html', badge:'מתחילות כאן', hot:true},
+  {ic:'📋', title:'המסלול שלי', desc:'שגרת טיפוח, המוצרים שתכיני, חומרי הגלם והמדריך שלך — לפי סוג העור.', href:'קוד-העור-עור-יבש.html'},
+  {ic:'🎬', title:'להבין את העור', desc:'שיעור מתנה ב-3 חלקים: אפידרמיס, דרמיס, וסוגי עור והזדקנות.', href:'שיעור-להבין-את-העור.html', badge:'🎁 מתנה'},
+  {ic:'📚', title:'ספריית התוכן', desc:'הידע המלא — שמנים, חמאות, חומרי גלם ושגרת טיפוח. לגלישה חופשית.', href:'ספריית-תוכן.html'},
+  {ic:'🧪', title:'בנק המתכונים', desc:'28 מתכונים נוספים מהספר — בונוס לכולן.', href:'בנק-מתכונים.html', badge:'🎁 בונוס'},
+  {ic:'🎓', title:'הקורס המלא', desc:'ללמוד להבין, לבנות ולשנות פורמולות בעצמך.', soon:true}
+];
+
+document.getElementById('grid').innerHTML = tiles.map(function(t){
+  var badge = t.soon ? '<span class="badge">בקרוב</span>'
+            : t.locked ? '<span class="badge">🔒 נעול</span>'
+            : t.badge ? '<span class="badge'+(t.hot?' hot':'')+'">'+t.badge+'</span>' : '';
+  var go = t.soon ? 'בבנייה' : t.locked ? t.lockText : 'כניסה ←';
+  var inner = badge + '<div class="ic">'+t.ic+'</div><h3>'+t.title+'</h3><p>'+t.desc+'</p><span class="go">'+go+'</span>';
+  if(t.href){ return '<a class="tile" href="'+t.href+'">'+inner+'</a>'; }
+  return '<div class="tile '+(t.soon?'soon':'locked')+'">'+inner+'</div>';
+}).join('');
+</script>
+</body>
+</html>
