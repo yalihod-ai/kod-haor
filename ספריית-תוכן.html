@@ -10,7 +10,7 @@
  body{font-family:'Heebo',sans-serif;background:#ffffff;color:var(--brown);line-height:1.8}
  h1,h2,h3,h4{font-family:'Heebo';font-weight:800}
  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
- .logobar{display:flex;align-items:center;justify-content:center;position:relative;padding:18px 20px 6px}.logobar img{height:50px}
+ .logobar{display:flex;align-items:center;justify-content:center;position:relative;padding:18px 20px 6px}.logobar img{height:100px}
  .homelink{position:absolute;right:20px;color:var(--brown-soft);font-weight:700;text-decoration:none;font-size:.95rem}.homelink:hover{color:var(--brown)}
  .hero{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;margin-bottom:24px;display:block}
  .back{background:none;border:none;color:var(--brown-soft);font-family:'Heebo';font-size:1rem;font-weight:700;cursor:pointer;padding:8px 0}
@@ -19,12 +19,14 @@
  header h1{font-size:2.4rem;font-weight:900}header h1 .g{color:var(--gold-deep)}
  header p{color:var(--brown-soft);font-size:1.08rem;margin-top:6px}
  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:18px;padding:34px 0 70px}
- .chapter{background:#fff;border:1px solid var(--cream-deep);border-radius:16px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;padding:24px;display:flex;flex-direction:column;min-height:160px;border-right:5px solid var(--gold)}
+ .chapter{background:#fff;border:1px solid var(--cream-deep);border-radius:16px;box-shadow:var(--shadow);cursor:pointer;transition:.18s;overflow:hidden;display:flex;flex-direction:column;border-right:5px solid var(--gold)}
  .chapter:hover{transform:translateY(-3px);box-shadow:0 16px 46px rgba(108,83,54,.16)}
+ .chapter .thumb{aspect-ratio:16/9;overflow:hidden;background:var(--cream-deep)}
+ .chapter .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+ .chapter .cbody{padding:16px 20px;display:flex;flex-direction:column}
  .chapter .idx{font-size:.78rem;color:var(--gold-deep);font-weight:700;letter-spacing:1px}
- .chapter h3{font-size:1.32rem;margin:5px 0 8px;line-height:1.25;font-weight:800}
- .chapter .prev{font-size:.9rem;color:var(--brown-soft);flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
- .chapter .go{margin-top:12px;font-weight:800;color:var(--gold-deep);font-size:.96rem}
+ .chapter h3{font-size:1.3rem;margin:5px 0 10px;line-height:1.25;font-weight:800}
+ .chapter .go{font-weight:800;color:var(--gold-deep);font-size:.96rem}
  .reader{display:none;padding:0 0 90px}.reader.show{display:block;animation:fade .35s ease}
  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
  .article{background:#fff;border:1px solid var(--cream-deep);border-radius:18px;box-shadow:var(--shadow);padding:44px 48px}
@@ -72,8 +74,8 @@ function contentHTML(paras){
 }
 function renderGrid(){
  document.getElementById('grid').innerHTML=CH.map(function(c,i){
-  const prev=esc((c.paras.join(' ')).slice(0,120))+'…';
-  return '<div class="chapter" onclick="go('+i+')"><div class="idx">'+(i+1)+'</div><h3>'+esc(c.title)+'</h3><div class="prev">'+prev+'</div><div class="go">לקריאה &#8592;</div></div>';
+  var pad=('0'+(i+1)).slice(-2);
+  return '<div class="chapter" onclick="go('+i+')"><div class="thumb"><img src="ch'+pad+'.jpg" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></div><div class="cbody"><div class="idx">'+(i+1)+'</div><h3>'+esc(c.title)+'</h3><div class="go">לקריאה &#8592;</div></div></div>';
  }).join('');
 }
 function go(i){
