@@ -4,9 +4,10 @@ const D={"type": "עור רגיל", "profile": "עור מאוזן — הרמונ
 (function(){
   var GSLUG='רגיל', GSTATE='normal', GSTORE='https://lilacnature-shop.co.il/collections/formula';
   var st=null; try{st=localStorage.getItem('kh_state');}catch(e){}
+  var preview=location.search.indexOf('preview')>-1;
   var gb=document.getElementById('guidebox');
-  if(st===GSTATE){
-    gb.innerHTML='<h3>✦ המדריך שלך</h3><a class="dlbtn" href="https://yalihodschool.co.il/kod-haor-guide-normal/">📖 פתחי את המדריך המלא שלך ←</a>';
+  if(st===GSTATE||preview){
+    gb.innerHTML='<h3>✦ המדריך המלא שלך</h3><p style="color:var(--brown-soft);margin-bottom:8px">כל הפורמולות שלך — מרכיבים, הכנה, שימוש וטיפים, במקום אחד.</p><a class="dlbtn" href="https://yalihodschool.co.il/kod-haor-guide-normal/">📖 פתחי את המדריך שלך ←</a>';
   }else{
     gb.innerHTML='<h3>✦ המדריך המלא של '+D.type+'</h3>'+
       '<p style="color:var(--brown-soft)">המדריך המלא — עם כל הפורמולות והמתכונים המדויקים — זמין לרכישה <a href="'+GSTORE+'" target="_blank" rel="noopener" style="color:var(--gold-deep);font-weight:800;text-decoration:underline">בחנות</a>.</p>';
