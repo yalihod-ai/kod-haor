@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קוד העור — הצטרפות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;--gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--shadow:0 12px 44px rgba(108,83,54,.14)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Heebo',sans-serif;background:#ffffff;color:var(--brown);line-height:1.75}
+  h1,h2,h3{font-family:'Heebo';font-weight:800;line-height:1.2}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px}
+  .narrow{max-width:720px;margin:0 auto}
+  .logobar{text-align:center;padding:20px 0 4px}.logobar img{height:100px}
+
+  /* HERO */
+  header{text-align:center;padding:34px 0 58px;background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 62%,var(--cream-deep));border-bottom:1px solid rgba(194,166,110,.3)}
+  .kick{display:inline-block;background:rgba(194,166,110,.18);color:var(--gold-deep);font-weight:700;letter-spacing:1.5px;font-size:.82rem;padding:8px 18px;border-radius:999px;margin-bottom:20px}
+  header h1{font-size:2.9rem;font-weight:900;margin-bottom:16px}
+  header h1 .g{color:var(--gold-deep)}
+  header .sub{color:var(--brown-soft);font-size:1.22rem;max-width:600px;margin:0 auto 30px}
+  .cta{display:inline-block;background:var(--gold-deep);color:#fff;font-weight:800;font-size:1.12rem;padding:17px 44px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(169,140,80,.4);transition:.16s;border:0;cursor:pointer;font-family:'Heebo'}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(169,140,80,.5)}
+  .priceline{margin-top:16px;color:var(--brown-soft);font-size:.98rem;font-weight:600}
+
+  section{padding:60px 0}
+  .sec-title{text-align:center;font-size:2rem;margin-bottom:12px}
+  .sec-title .g{color:var(--gold-deep)}
+  .sec-lead{text-align:center;color:var(--brown-soft);font-size:1.1rem;max-width:640px;margin:0 auto 40px}
+
+  /* PAIN */
+  .pain{background:var(--white)}
+  .painlist{display:grid;gap:14px;max-width:640px;margin:0 auto}
+  .painitem{background:#fff;border:1px solid var(--cream-deep);border-right:4px solid var(--gold);border-radius:14px;padding:18px 22px;font-size:1.05rem;font-weight:500}
+
+  /* SHIFT */
+  .shift{text-align:center}
+  .shift p{font-size:1.22rem;color:var(--brown);max-width:640px;margin:0 auto}
+
+  /* VALUE STACK */
+  .stack{background:var(--cream)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+  .card{background:#fff;border:1px solid var(--cream-deep);border-radius:18px;box-shadow:var(--shadow);padding:26px 24px;border-top:5px solid var(--gold)}
+  .card .ic{font-size:2rem;margin-bottom:10px}
+  .card h3{font-size:1.28rem;margin-bottom:8px}
+  .card p{color:var(--brown-soft);font-size:.98rem}
+  .card .tag{display:inline-block;font-size:.72rem;font-weight:800;background:var(--gold-deep);color:#fff;border-radius:99px;padding:3px 12px;margin-bottom:10px}
+
+  /* ABOUT */
+  .about{background:#fff}
+  .aboutbox{max-width:720px;margin:0 auto;text-align:center}
+  .about p{font-size:1.1rem;margin-bottom:16px}
+  .about .name{font-weight:800;color:var(--gold-deep)}
+
+  /* FORWHO */
+  .forwho{background:var(--white)}
+  .whogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;margin:0 auto}
+  @media(max-width:640px){.whogrid{grid-template-columns:1fr}}
+  .whobox{background:#fff;border:1px solid var(--cream-deep);border-radius:16px;padding:24px}
+  .whobox h3{font-size:1.15rem;margin-bottom:14px}
+  .whobox.yes h3{color:var(--gold-deep)}
+  .whobox ul{list-style:none;display:grid;gap:10px}
+  .whobox li{font-size:1rem;padding-right:26px;position:relative;color:var(--brown-soft)}
+  .whobox.yes li:before{content:'✓';position:absolute;right:0;color:var(--gold-deep);font-weight:900}
+  .whobox.no li:before{content:'✕';position:absolute;right:0;color:#c99;font-weight:900}
+
+  /* OFFER + FORM */
+  .offer{background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 70%);padding:64px 0}
+  .offerbox{max-width:560px;margin:0 auto;background:#fff;border:1px solid var(--cream-deep);border-radius:24px;box-shadow:0 20px 60px rgba(108,83,54,.16);overflow:hidden}
+  .offerhead{background:var(--brown);color:var(--cream);text-align:center;padding:26px 24px}
+  .offerhead h3{font-size:1.5rem;color:#fff;margin-bottom:6px}
+  .offerhead .price{font-size:2.6rem;font-weight:900;color:var(--gold)}
+  .offerhead .price small{font-size:1rem;font-weight:600;color:var(--cream)}
+  .offerhead .once{font-size:.9rem;color:var(--cream);opacity:.85}
+  .offerbody{padding:28px 30px 34px}
+  .incl{list-style:none;display:grid;gap:11px;margin-bottom:24px}
+  .incl li{padding-right:28px;position:relative;font-weight:500}
+  .incl li:before{content:'✓';position:absolute;right:0;color:var(--gold-deep);font-weight:900}
+  form{display:grid;gap:12px}
+  form input{width:100%;padding:14px 16px;border:1.5px solid var(--cream-deep);border-radius:12px;font-family:'Heebo';font-size:1rem;color:var(--brown);background:var(--white)}
+  form input:focus{outline:0;border-color:var(--gold)}
+  form .cta{width:100%;text-align:center;margin-top:6px}
+  .secure{text-align:center;color:var(--brown-soft);font-size:.85rem;margin-top:14px}
+
+  /* FAQ */
+  .faq{background:#fff}
+  .qa{max-width:680px;margin:0 auto;display:grid;gap:14px}
+  .qa details{background:var(--white);border:1px solid var(--cream-deep);border-radius:14px;padding:4px 20px}
+  .qa summary{cursor:pointer;font-weight:700;padding:14px 0;list-style:none;font-size:1.05rem}
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary:before{content:'+ ';color:var(--gold-deep);font-weight:900}
+  .qa details[open] summary:before{content:'– '}
+  .qa p{padding:0 0 16px;color:var(--brown-soft)}
+
+  footer{text-align:center;padding:30px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700;background:var(--cream)}
+  .draftnote{background:#fff8e6;border:1px dashed var(--gold-deep);color:var(--brown);text-align:center;font-size:.85rem;padding:10px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="draftnote">✍️ טיוטה לעריכה · המחיר 97₪ הוא זמני — נסגור אותו יחד · התשלום עדיין לא מחובר (יעד שריג)</div>
+
+<div class="logobar"><img src="logo.png" alt="יאלי הוד"></div>
+
+<header>
+  <div class="wrap">
+    <span class="kick">✦ קוד העור</span>
+    <h1>העור שלך מדבר.<br>הגיע הזמן <span class="g">להבין את השפה</span></h1>
+    <p class="sub">אבחון אישי, מסלול טיפוח מדויק ומדריך שנבנה בדיוק בשבילך — כל מה שהעור שלך באמת צריך, במקום אחד. בלי לנחש יותר.</p>
+    <a href="#offer" class="cta">אני רוצה לפתוח את קוד העור</a>
+    <div class="priceline">הצטרפות חד-פעמית · גישה מלאה ללא הגבלת זמן</div>
+  </div>
+</header>
+
+<!-- PAIN -->
+<section class="pain">
+  <div class="wrap">
+    <h2 class="sec-title">מוכר לך?</h2>
+    <div class="painlist">
+      <div class="painitem">ארון מלא במוצרים — ואת עדיין לא בטוחה מה באמת עובד עלייך.</div>
+      <div class="painitem">כל מותג מבטיח משהו אחר, ואת קונה בניחוש ומקווה לטוב.</div>
+      <div class="painitem">העור מתייבש, מבריק, אדום או רגיש — ואת לא יודעת למה ומה עושים.</div>
+      <div class="painitem">שילמת מאות שקלים על קרמים שלא עשו את העבודה.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SHIFT -->
+<section class="shift">
+  <div class="wrap">
+    <h2 class="sec-title">מה אם היה לך <span class="g">קוד</span>?</h2>
+    <p>לא עוד ניחושים. אבחון שמזהה בדיוק את מצב העור שלך — ומסלול טיפוח שנבנה סביבו, עם המוצרים, חומרי הגלם והמתכונים שמתאימים דווקא <b>לך</b>. זה בדיוק מה שקוד העור עושה.</p>
+  </div>
+</section>
+
+<!-- VALUE STACK -->
+<section class="stack">
+  <div class="wrap">
+    <h2 class="sec-title">מה מקבלים ב<span class="g">קוד העור</span></h2>
+    <p class="sec-lead">הכל דיגיטלי, אישי ונפתח מיד — צעד אחר צעד, לפי סוג העור שלך.</p>
+    <div class="cards">
+      <div class="card"><div class="ic">🔍</div><h3>האבחון האישי</h3><p>15 שאלות קצרות שמזהות את מצב העור המרכזי שלך מתוך 5 סוגים — הבסיס לכל השאר.</p></div>
+      <div class="card"><div class="ic">📋</div><h3>המסלול שלך</h3><p>שגרת טיפוח מלאה, המוצרים שתכיני, חומרי הגלם ורשימת הקנייה — בהתאמה לעור שלך.</p></div>
+      <div class="card"><div class="ic">📕</div><h3>המדריך האישי</h3><p>מדריך להורדה, מותאם בדיוק לסוג העור שלך — לשמור, להדפיס ולחזור אליו.</p></div>
+      <div class="card"><span class="tag">🎁 מתנה</span><div class="ic">🎬</div><h3>שיעור "להבין את העור"</h3><p>שיעור וידאו ב-3 חלקים: אפידרמיס, דרמיס וסוגי העור — להבין את מה שאת מטפחת.</p></div>
+      <div class="card"><div class="ic">📚</div><h3>ספריית התוכן</h3><p>שמנים, חמאות, חומרי גלם ושגרות טיפוח — הידע המלא שלי, פתוח לגלישה חופשית.</p></div>
+      <div class="card"><span class="tag">🎁 בונוס</span><div class="ic">🧪</div><h3>בנק המתכונים</h3><p>28 מתכונים טבעיים נוספים להכנה בבית — לפנים, לגוף ולאמבט.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="wrap aboutbox">
+    <h2 class="sec-title">מי אני</h2>
+    <p>היי, אני <span class="name">יאלי הוד</span>. כבר יותר מ-25 שנה אני חוקרת, מפתחת ומלמדת טיפוח עור טבעי — מתוך אמונה עמוקה שכל אחת יכולה להבין את העור שלה ולטפל בו נכון, בלי כימיה מיותרת ובלי הבטחות שווא.</p>
+    <p>קוד העור הוא כל הידע שצברתי, מזוקק למסלול אחד ברור ואישי — כדי שגם את תפסיקי לנחש, ותתחילי לטפח מתוך הבנה.</p>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="forwho">
+  <div class="wrap">
+    <h2 class="sec-title">האם זה <span class="g">בשבילך</span>?</h2>
+    <div class="whogrid">
+      <div class="whobox yes">
+        <h3>כן, אם…</h3>
+        <ul>
+          <li>את רוצה סוף-סוף להבין את העור שלך</li>
+          <li>את אוהבת טיפוח טבעי ואמיתי</li>
+          <li>את מוכנה להפסיק לבזבז על מוצרים שלא עובדים</li>
+          <li>את רוצה מסלול ברור, לא עוד מידע מבלבל</li>
+        </ul>
+      </div>
+      <div class="whobox no">
+        <h3>אולי פחות, אם…</h3>
+        <ul>
+          <li>את מחפשת פתרון קסם בין-לילה</li>
+          <li>את לא מוכנה להשקיע כמה דקות באבחון</li>
+          <li>את מעדיפה להמשיך לקנות בניחוש</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER + FORM -->
+<section class="offer" id="offer">
+  <div class="wrap">
+    <h2 class="sec-title">מצטרפות ל<span class="g">קוד העור</span></h2>
+    <div class="offerbox">
+      <div class="offerhead">
+        <h3>קוד העור — הכל כלול</h3>
+        <div class="price">₪97 <small>חד-פעמי</small></div>
+        <div class="once">גישה מלאה, ללא הגבלת זמן</div>
+      </div>
+      <div class="offerbody">
+        <ul class="incl">
+          <li>האבחון האישי + פרופיל העור שלך</li>
+          <li>המסלול המלא: שגרה, מוצרים וחומרי גלם</li>
+          <li>המדריך האישי להורדה</li>
+          <li>🎁 שיעור וידאו "להבין את העור"</li>
+          <li>📚 ספריית התוכן המלאה</li>
+          <li>🎁 בנק 28 המתכונים</li>
+        </ul>
+        <form onsubmit="return goPay(event)">
+          <input type="text" name="name" placeholder="שם מלא" required>
+          <input type="email" name="email" placeholder="כתובת מייל" required>
+          <input type="tel" name="phone" placeholder="טלפון" required>
+          <button type="submit" class="cta">לתשלום מאובטח וכניסה ←</button>
+        </form>
+        <p class="secure">🔒 תשלום מאובטח · הגישה נפתחת מיד לאחר התשלום</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <h2 class="sec-title">שאלות <span class="g">שחוזרות</span></h2>
+    <div class="qa">
+      <details><summary>כמה זמן יש לי גישה?</summary><p>גישה מלאה לכל התכנים, ללא הגבלת זמן. נכנסות מתי שרוצות, חוזרות שוב ושוב.</p></details>
+      <details><summary>אני לא מבינה כלום בפורמולציה — זה בשבילי?</summary><p>בדיוק בשבילך. קוד העור בנוי צעד אחר צעד, בשפה פשוטה, בלי ידע מוקדם.</p></details>
+      <details><summary>איך אני מקבלת גישה אחרי התשלום?</summary><p>מיד לאחר התשלום נפתחת בפנייך הכניסה לקוד העור, וגם נשלח אלייך קישור למייל.</p></details>
+      <details><summary>צריך לקנות ציוד יקר?</summary><p>לא. חומרי הגלם פשוטים וזמינים, ואני מלווה אותך בדיוק מה להשיג ואיפה.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>יאלי הוד</footer>
+
+<script>
+function goPay(e){
+  e.preventDefault();
+  // בהמשך: כאן נחבר את שער התשלום של יעד שריג + שמירת הליד ב-Flashy
+  alert('כאן ייפתח שער התשלום המאובטח (יעד שריג).\nלאחר תשלום מוצלח — כניסה אוטומטית לקוד העור.');
+  return false;
+}
+</script>
+</body>
+</html>
