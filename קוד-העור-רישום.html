@@ -52,9 +52,12 @@
 
   /* ABOUT */
   .about{background:#fff}
-  .aboutbox{max-width:720px;margin:0 auto;text-align:center}
+  .aboutgrid{display:grid;grid-template-columns:300px 1fr;gap:38px;align-items:center;max-width:880px;margin:0 auto}
+  .aboutgrid img{width:100%;border-radius:20px;box-shadow:0 16px 44px rgba(108,83,54,.22)}
+  .abouttext h2{text-align:right;margin-bottom:16px}
   .about p{font-size:1.1rem;margin-bottom:16px}
   .about .name{font-weight:800;color:var(--gold-deep)}
+  @media(max-width:640px){.aboutgrid{grid-template-columns:1fr;gap:22px}.aboutgrid img{max-width:280px;margin:0 auto}.abouttext h2{text-align:center}}
 
   /* FORWHO */
   .forwho{background:var(--white)}
@@ -159,10 +162,15 @@
 
 <!-- ABOUT -->
 <section class="about">
-  <div class="wrap aboutbox">
-    <h2 class="sec-title">מי אני</h2>
-    <p>היי, אני <span class="name">יאלי הוד</span>. כבר יותר מ-25 שנה אני חוקרת, מפתחת ומלמדת טיפוח עור טבעי — מתוך אמונה עמוקה שכל אחת יכולה להבין את העור שלה ולטפל בו נכון, בלי כימיה מיותרת ובלי הבטחות שווא.</p>
-    <p>קוד העור הוא כל הידע שצברתי, מזוקק למסלול אחד ברור ואישי — כדי שגם את תפסיקי לנחש, ותתחילי לטפח מתוך הבנה.</p>
+  <div class="wrap">
+    <div class="aboutgrid">
+      <img src="yali-portrait.jpg" alt="יאלי הוד">
+      <div class="abouttext">
+        <h2 class="sec-title">מי <span class="g">אני</span></h2>
+        <p>היי, אני <span class="name">יאלי הוד</span>. כבר כ-25 שנה אני עוסקת ברוקחות טבעית, בקוסמטיקה טבעית, בחומרי גלם ובפורמולציה — מפתחת פורמולות, מלמדת נשים ובונה קורסים ומדריכים. הדבר שהכי חשוב לי הוא ללמד נשים להבין באמת את העור, את החומרים ואת ההיגיון שמאחורי מוצר קוסמטי טוב.</p>
+        <p>כבר 27 שנה לא קניתי קרם פנים — אני מכינה לעצמי בדיוק את מה שהעור שלי צריך. וזה בדיוק מה שאני רוצה לתת גם לך: להפסיק לנחש, ולהתחיל להבין.</p>
+      </div>
+    </div>
   </div>
 </section>
 
