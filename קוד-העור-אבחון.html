@@ -68,6 +68,9 @@
     <span class="kick">קוד העור · אבחון אישי</span>
     <h1>בואי נזהה את <span class="g">קוד העור שלך</span></h1>
     <p>עני על 15 שאלות קצרות, ונאפיין יחד את מצב העור המרכזי שלך — כדי לבנות לך מסלול טיפוח, מתכונים ופורמולות שמתאימים בדיוק לעור שלך כרגע.</p>
+    <div style="max-width:520px;margin:22px auto 0;background:rgba(194,166,110,.16);border:1px solid var(--gold);border-radius:14px;padding:16px 20px;color:var(--brown);font-weight:600">
+      🌿 שימי לב: את יכולה לעשות את האבחון <b>פעם אחת בלבד</b>.<br>לכן חשוב לענות על השאלות במדויק, לפי מצב העור שלך כרגע.
+    </div>
     <div><button class="cta" onclick="startQuiz()">להתחלת האבחון ✦</button>
       <span class="cta-sub">15 שאלות · כ-3 דקות</span></div>
   </div>
@@ -222,6 +225,19 @@ function goRoute(state){
   if(pages[state]){ window.location.href=pages[state]; }
   else { alert('דף המסלול לסוג עור זה ייבנה בקרוב.'); }
 }
+/* נעילת אבחון חד-פעמי: אם כבר אובחן — מציגים את התוצאה השמורה במקום שאלון חדש */
+(function(){
+  var st=null; try{st=localStorage.getItem('kh_state');}catch(e){}
+  if(st && STATE_HE[st]){
+    document.getElementById('intro').innerHTML=
+      '<div class="hero">'+
+        '<span class="kick">קוד העור · אבחון אישי</span>'+
+        '<h1>כבר עשית את <span class="g">האבחון</span> ✦</h1>'+
+        '<p>האבחון הוא חד-פעמי. סוג העור המרכזי שלך: <b>'+STATE_HE[st]+'</b>.<br>המסלול, הפורמולות והמדריך שלך מחכים לך.</p>'+
+        '<div><button class="cta" onclick="goRoute(\''+st+'\')">למסלול שלי ←</button></div>'+
+      '</div><footer>יאלי הוד</footer>';
+  }
+})();
 </script>
 </body>
 </html>
