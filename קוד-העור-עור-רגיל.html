@@ -94,7 +94,7 @@ const D={"type": "עור רגיל", "profile": "עור מאוזן — הרמונ
   var st=null; try{st=localStorage.getItem('kh_state');}catch(e){}
   var gb=document.getElementById('guidebox');
   if(st===GSTATE){
-    gb.innerHTML='<h3>✦ המדריך שלך</h3><a class="dlbtn" href="מדריך-עור-'+GSLUG+'.pdf" download>📕 הורידי את המדריך שלך</a>';
+    gb.innerHTML='<h3>✦ המדריך שלך</h3><a class="dlbtn" href="קוד-העור-מדריך-רגיל.html">📖 פתחי את המדריך המלא שלך ←</a>';
   }else{
     gb.innerHTML='<h3>✦ המדריך המלא של '+D.type+'</h3>'+
       '<p style="color:var(--brown-soft)">המדריך המלא — עם כל הפורמולות והמתכונים המדויקים — זמין לרכישה <a href="'+GSTORE+'" target="_blank" rel="noopener" style="color:var(--gold-deep);font-weight:800;text-decoration:underline">בחנות</a>.</p>';

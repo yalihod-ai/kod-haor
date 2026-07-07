@@ -6,7 +6,7 @@ const D={"type": "עור רגיל", "profile": "עור מאוזן — הרמונ
   var st=null; try{st=localStorage.getItem('kh_state');}catch(e){}
   var gb=document.getElementById('guidebox');
   if(st===GSTATE){
-    gb.innerHTML='<h3>✦ המדריך שלך</h3><a class="dlbtn" href="https://yalihod-ai.github.io/kod-haor/מדריך-עור-'+GSLUG+'.pdf" download>📕 הורידי את המדריך שלך</a>';
+    gb.innerHTML='<h3>✦ המדריך שלך</h3><a class="dlbtn" href="https://yalihodschool.co.il/kod-haor-guide-normal/">📖 פתחי את המדריך המלא שלך ←</a>';
   }else{
     gb.innerHTML='<h3>✦ המדריך המלא של '+D.type+'</h3>'+
       '<p style="color:var(--brown-soft)">המדריך המלא — עם כל הפורמולות והמתכונים המדויקים — זמין לרכישה <a href="'+GSTORE+'" target="_blank" rel="noopener" style="color:var(--gold-deep);font-weight:800;text-decoration:underline">בחנות</a>.</p>';
