@@ -218,9 +218,9 @@ function showResult(){
   window.scrollTo(0,0);
 }
 function goRoute(state){
-  const pages={dry:'קוד-העור-עור-יבש.html'};
+  const pages={dry:'קוד-העור-עור-יבש.html',oily:'קוד-העור-עור-שמן.html',combo:'קוד-העור-עור-מעורב.html',normal:'קוד-העור-עור-רגיל.html',mature:'קוד-העור-עור-בוגר.html'};
   if(pages[state]){ window.location.href=pages[state]; }
-  else { alert('דמו: דף המסלול של "'+STATE_HE[state]+'" ייבנה בשלב הבא (בונים סוג עור אחד קודם).'); }
+  else { alert('דף המסלול לסוג עור זה ייבנה בקרוב.'); }
 }
 </script>
 </body>

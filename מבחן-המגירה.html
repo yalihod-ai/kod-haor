@@ -97,7 +97,7 @@
 <!-- ===== INTRO ===== -->
 <div id="landing">
   <div class="hero"><div class="wrap">
-    <span class="kicker">מגנט חינם · מבחן מודעות</span>
+    <span class="kicker">מבחן מודעות</span>
     <h1>מבחן <span class="g">המגירה</span></h1>
     <p class="hsub">מה את באמת יודעת על מוצרי הטיפוח שאת מורחת כל יום?</p>
     <p class="htext">פתחי רגע את מגירת הטיפוח שלך. כמה מוצרים יש שם? בכמה מהם את באמת משתמשת? האם את יודעת מה כל אחד עושה? <b>והאם את בטוחה שהם באמת מתאימים למה שהעור שלך צריך עכשיו?</b><br><br>השאלון הבא יעזור לך להבין מה דפוס הבחירה שלך בטיפוח — האם את אוגרת מוצרים, משתמשת מתוך הרגל, קונה לפי הבטחות, או אולי עושה הרבה בשביל העור אבל בלי שיטה ברורה. זה לא אבחון עור מקצועי, אלא מבחן מודעות קצר שיעזור לך להתחיל לעשות סדר.</p>
@@ -248,13 +248,17 @@ function compute(){
   });
   return s;
 }
-function showResult(){
-  const s=compute();
-  const order=['o','p','a','h'];
-  const arr=Object.keys(TYPES).map(function(k){return {k:k,score:s[k]}});
-  arr.sort(function(x,y){return (y.score-x.score) || (order.indexOf(x.k)-order.indexOf(y.k))});
-  const lead=arr[0], second=arr[1], gap=lead.score-second.score;
-  const L=TYPES[lead.k], S=TYPES[second.k];
+function showResult(forceK){
+  let leadK,secondK,gap;
+  if(forceK){ leadK=forceK; secondK=['h','a','p','o'].filter(function(x){return x!==forceK})[0]; gap=3; }
+  else{
+    const s=compute();
+    const order=['o','p','a','h'];
+    const arr=Object.keys(TYPES).map(function(k){return {k:k,score:s[k]}});
+    arr.sort(function(x,y){return (y.score-x.score) || (order.indexOf(x.k)-order.indexOf(y.k))});
+    leadK=arr[0].k; secondK=arr[1].k; gap=arr[0].score-arr[1].score;
+  }
+  const L=TYPES[leadK], S=TYPES[secondK];
   const secHead = gap<=2 ? ('יש אצלך שילוב די ברור גם עם <b>'+S.name+'</b>') : ('ויש לך גם נטייה קלה ל־<b>'+S.name+'</b>');
 
   document.getElementById('loading').classList.add('hidden');
@@ -286,6 +290,10 @@ function showResult(){
   window.scrollTo(0,0);
 }
 function openFront(){ window.location.href='קוד-העור-רישום.html'; }
+/* תצוגת תוצאה ישירה לכל טיפוס: ?type=h / a / p / o */
+(function(){var t=new URLSearchParams(location.search).get('type');
+  if(['h','a','p','o'].indexOf(t)>-1){document.getElementById('landing').classList.add('hidden');showResult(t);}
+})();
 </script>
 </body>
 </html>
