@@ -20,5 +20,5 @@ const VMAP={"שמן שקדים מתוקים": "20977503502439", "שמן זרעי
 function addCart(){
   var ids=D.shop.map(function(s){return VMAP[s[0]];}).filter(Boolean);
   if(!ids.length){ alert('לא נמצאו חומרי גלם לסל.'); return; }
-  window.open('https://lilacnature-shop.co.il/cart/'+ids.map(function(id){return id+':1';}).join(','),'_blank');
+  window.open('https://lilacnature-shop.co.il/cart/'+ids.map(function(id){return id+':1';}).join(',')+'?storefront=true','_blank');
 }
