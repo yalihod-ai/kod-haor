@@ -44,12 +44,15 @@
 <script>
 var tiles = [
   {ic:'🔍', title:'האבחון שלי', desc:'15 שאלות קצרות שמזהות את מצב העור המרכזי שלך. מתחילות כאן.', href:'קוד-העור-אבחון.html', badge:'מתחילות כאן', hot:true},
-  {ic:'📋', title:'המסלול שלי', desc:'שגרת טיפוח, המוצרים שתכיני, חומרי הגלם והמדריך שלך — לפי סוג העור.', href:'קוד-העור-עור-יבש.html'},
+  {ic:'📋', title:'שגרת הטיפוח והמתכונים שלי', desc:'השגרה, המוצרים שתכיני, הפורמולות המלאות וחומרי הגלם — מותאמים אישית לסוג העור שלך.', href:'קוד-העור-אבחון.html', route:true},
   {ic:'🎬', title:'להבין את העור', desc:'שיעור מתנה ב-3 חלקים: אפידרמיס, דרמיס, וסוגי עור והזדקנות.', href:'שיעור-להבין-את-העור.html', badge:'🎁 מתנה'},
   {ic:'📚', title:'ספריית התוכן', desc:'הידע המלא — שמנים, חמאות, חומרי גלם ושגרת טיפוח. לגלישה חופשית.', href:'ספריית-תוכן.html'},
   {ic:'🧪', title:'בנק המתכונים', desc:'28 מתכונים נוספים מהספר — בונוס לכולן.', href:'בנק-מתכונים.html', badge:'🎁 בונוס'}
 ];
 
+var _st=null; try{_st=localStorage.getItem('kh_state');}catch(e){}
+var _rp={dry:'קוד-העור-עור-יבש.html',oily:'קוד-העור-עור-שמן.html',combo:'קוד-העור-עור-מעורב.html',normal:'קוד-העור-עור-רגיל.html',mature:'קוד-העור-עור-בוגר.html'};
+tiles.forEach(function(t){ if(t.route && _st && _rp[_st]) t.href=_rp[_st]; });
 document.getElementById('grid').innerHTML = tiles.map(function(t){
   var badge = t.soon ? '<span class="badge">בקרוב</span>'
             : t.locked ? '<span class="badge">🔒 נעול</span>'
