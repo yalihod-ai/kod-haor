@@ -1,90 +1,4 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>קוד העור — אבחון</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-  :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;--gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--shadow:0 12px 44px rgba(108,83,54,.14)}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Heebo',sans-serif;background:#ffffff;color:var(--brown);line-height:1.75}
-  h1,h2,h3,h4{font-family:'Heebo';font-weight:800}
-  .hidden{display:none!important}
-  .logobar{display:flex;align-items:center;justify-content:center;position:relative;padding:18px 20px 2px}.logobar img{height:100px}
-  .homelink{position:absolute;right:20px;color:var(--brown-soft);font-weight:700;text-decoration:none;font-size:.95rem}.homelink:hover{color:var(--brown)}
-  .hero{background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 60%,var(--cream-deep));text-align:center;padding:70px 22px 60px;border-bottom:1px solid rgba(194,166,110,.3)}
-  .kick{display:inline-block;background:rgba(194,166,110,.18);color:var(--gold-deep);font-weight:700;letter-spacing:1.5px;font-size:.82rem;padding:8px 18px;border-radius:999px;margin-bottom:22px}
-  .hero h1{font-size:2.6rem;font-weight:900;margin-bottom:14px}.hero h1 .g{color:var(--gold-deep)}
-  .hero p{font-size:1.14rem;color:var(--brown-soft);max-width:560px;margin:0 auto}
-  .cta{display:inline-block;font-family:'Heebo';font-weight:800;font-size:1.2rem;cursor:pointer;border:none;border-radius:14px;padding:18px 46px;background:var(--brown);color:var(--white);margin-top:30px;transition:.2s;box-shadow:0 8px 24px rgba(108,83,54,.25)}
-  .cta:hover{background:var(--gold-deep)}.cta-sub{display:block;margin-top:12px;font-size:.9rem;color:var(--brown-soft)}
-  .quiz{max-width:680px;margin:0 auto;padding:36px 22px 80px}
-  .qprogress{position:sticky;top:0;background:var(--cream);padding:14px 0;z-index:5}
-  .bar{height:7px;background:var(--cream-deep);border-radius:99px;overflow:hidden}.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-deep));width:0;transition:width .35s}
-  .barlbl{text-align:center;font-size:.85rem;color:var(--brown-soft);margin-top:8px;font-weight:600}
-  .qcard{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:36px 32px;margin-top:14px;animation:fade .3s}
-  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
-  .qtext{font-size:1.45rem;font-weight:800;margin-bottom:20px;line-height:1.3}
-  .opts{display:flex;flex-direction:column;gap:11px}
-  .opt{border:1.5px solid var(--cream-deep);background:var(--cream);border-radius:12px;padding:15px 18px;cursor:pointer;font-size:1.05rem;font-weight:600;transition:.16s;display:flex;align-items:center;gap:12px}
-  .opt:hover{border-color:var(--gold);background:var(--white)}
-  .opt.sel{border-color:var(--gold-deep);background:rgba(194,166,110,.15);box-shadow:0 0 0 3px rgba(194,166,110,.14)}
-  .opt .dot{width:20px;height:20px;border:2px solid var(--gold);border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem}
-  .opt.sel .dot{background:var(--gold-deep);border-color:var(--gold-deep)}
-  .qnav{display:flex;justify-content:space-between;margin-top:26px;align-items:center}
-  .btn{font-family:'Heebo';font-weight:800;font-size:1.05rem;cursor:pointer;border:none;border-radius:11px;padding:14px 30px;transition:.2s}
-  .btn-primary{background:var(--brown);color:var(--white)}.btn-primary:hover{background:var(--gold-deep)}.btn-primary:disabled{opacity:.35;cursor:not-allowed}
-  .btn-ghost{background:transparent;color:var(--brown-soft);font-weight:700}
-  .result{max-width:700px;margin:0 auto;padding:44px 22px 90px;animation:fade .4s}
-  .rtop{text-align:center;color:var(--gold-deep);font-weight:700;letter-spacing:1px;margin-bottom:6px}
-  .rtitle{font-size:2.1rem;font-weight:900;text-align:center;margin-bottom:22px;line-height:1.25}
-  .rcard{background:var(--white);border-radius:18px;box-shadow:var(--shadow);padding:34px 34px;margin-bottom:18px}
-  .rsum{font-size:1.12rem;margin-bottom:16px}
-  .rmeans{color:var(--brown-soft);margin-bottom:6px}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:8px}
-  @media(max-width:600px){.cols{grid-template-columns:1fr}.rtitle{font-size:1.6rem}}
-  .col{border-radius:14px;padding:20px 22px}
-  .col.focus{background:rgba(194,166,110,.13)}.col.avoid{background:rgba(181,101,74,.09)}
-  .col h4{font-size:1.1rem;margin-bottom:10px}.col.focus h4{color:var(--gold-deep)}.col.avoid h4{color:#b5654a}
-  .col ul{list-style:none;display:flex;flex-direction:column;gap:7px}.col li{display:flex;gap:8px;font-size:1rem}
-  .col.focus li::before{content:"✓";color:var(--gold-deep);font-weight:800}.col.avoid li::before{content:"✕";color:#b5654a;font-weight:800}
-  .flags{margin-top:16px}.flags .lbl{font-weight:700;color:var(--gold-deep);font-size:.95rem;margin-bottom:6px}
-  .chip{display:inline-block;background:var(--cream);border:1px solid var(--cream-deep);border-radius:99px;padding:5px 14px;font-size:.88rem;font-weight:600;margin:3px}
-  .transition{background:linear-gradient(160deg,var(--white),var(--cream-deep));border:2px solid var(--gold);border-radius:18px;padding:28px 30px;text-align:center}
-  .transition p{font-size:1.1rem;margin-bottom:16px}
-  .debug{margin-top:26px;background:#2c2419;color:#e5dfce;border-radius:12px;padding:16px 18px;font-size:.82rem;font-family:monospace;direction:ltr;text-align:left}
-  .debug h4{color:var(--gold);font-family:'Heebo';margin-bottom:8px;direction:rtl;text-align:right}
-  .tag{display:inline-block;background:#443826;color:var(--gold);border-radius:6px;padding:2px 8px;margin:2px;font-size:.78rem}
-  footer{text-align:center;padding:26px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700}
-</style>
-</head>
-<body>
-<div class="logobar"><a class="homelink" href="קוד-העור-דשבורד.html">&#8592; עמוד ראשי</a><img src="logo.png" alt="יאלי הוד"></div>
-<div id="intro">
-  <div class="hero">
-    <span class="kick">קוד העור · אבחון אישי</span>
-    <h1>בואי נזהה את <span class="g">קוד העור שלך</span></h1>
-    <p>עני על 15 שאלות קצרות, ונאפיין יחד את מצב העור המרכזי שלך — כדי לבנות לך מסלול טיפוח, מתכונים ופורמולות שמתאימים בדיוק לעור שלך כרגע.</p>
-    <div style="max-width:520px;margin:22px auto 0;background:rgba(194,166,110,.16);border:1px solid var(--gold);border-radius:14px;padding:16px 20px;color:var(--brown);font-weight:600">
-      🌿 שימי לב: את יכולה לעשות את האבחון <b>פעם אחת בלבד</b>.<br>לכן חשוב לענות על השאלות במדויק, לפי מצב העור שלך כרגע.
-    </div>
-    <div><button class="cta" onclick="startQuiz()">להתחלת האבחון ✦</button>
-      <span class="cta-sub">15 שאלות · כ-3 דקות</span></div>
-  </div>
-  <footer>יאלי הוד</footer>
-</div>
 
-<div id="quiz" class="quiz hidden">
-  <div class="qprogress"><div class="bar"><i id="barFill"></i></div><div class="barlbl" id="barLbl"></div></div>
-  <div class="qcard" id="qcard"></div>
-</div>
-
-<div id="result" class="result hidden"></div>
-
-<script>
 /* מצבים: dry oily combo normal mature | דגלים: sens clog pig | age40 על אופציות גיל 40+ */
 const Q=[
  {t:'מה טווח הגיל שלך?',o:[
@@ -222,7 +136,7 @@ function showResult(){
   window.scrollTo(0,0);
 }
 function goRoute(state){
-  const pages={dry:'קוד-העור-עור-יבש.html',oily:'קוד-העור-עור-שמן.html',combo:'קוד-העור-עור-מעורב.html',normal:'קוד-העור-עור-רגיל.html',mature:'קוד-העור-עור-בוגר.html'};
+  const pages={dry:'https://yalihodschool.co.il/kod-haor-dry/',oily:'https://yalihodschool.co.il/kod-haor-oily/',combo:'https://yalihodschool.co.il/kod-haor-combo/',normal:'https://yalihodschool.co.il/kod-haor-normal/',mature:'https://yalihodschool.co.il/kod-haor-mature/'};
   if(pages[state]){ window.location.href=pages[state]; }
   else { alert('דף המסלול לסוג עור זה ייבנה בקרוב.'); }
 }
@@ -239,6 +153,3 @@ function goRoute(state){
       '</div><footer>יאלי הוד</footer>';
   }
 })();
-</script>
-</body>
-</html>
