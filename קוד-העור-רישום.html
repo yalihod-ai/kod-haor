@@ -106,7 +106,7 @@
 </style>
 </head>
 <body>
-<div class="draftnote">🧪 לבדיקה: <a href="https://icom.yaad.net/p/?Amount=500&Coin=1&FixTash=False&Info=%D7%A7%D7%95%D7%93%20%D7%94%D7%A2%D7%95%D7%A8&Masof=4501400931&MoreData=True&Order=KODHAOR-TEST5&PageLang=HEB&Tash=1&UTF8=True&UTF8out=True&action=pay&sendemail=True&signature=81e9d5b43313dcda573d2dc7be09fd9212c0c64d78225c585cc080805bf7dcf2" style="color:var(--gold-deep);font-weight:800">תשלום בדיקה 5₪ ←</a> · הכפתור הראשי מחובר לתשלום מלא 97₪</div>
+<div class="draftnote">🧪 לבדיקה (יוצר חשבון + גישה): <a href="https://yalihodschool.co.il/checkout/?add-to-cart=28688" style="color:var(--gold-deep);font-weight:800">רכישת בדיקה 5₪ ←</a> · הכפתור הראשי — רכישה מלאה 97₪</div>
 
 <div class="logobar"><img src="logo.png" alt="יאלי הוד"></div>
 
@@ -154,6 +154,7 @@
       <div class="card"><div class="ic">🪞</div><h3>פרופיל העור שלך</h3><p>תמונת מצב ברורה: מה מאפיין את העור שלך עכשיו, על מה להתמקד וממה כדאי להיזהר.</p></div>
       <div class="card"><div class="ic">📋</div><h3>שגרת הטיפוח שלך</h3><p>שגרת בוקר, ערב ושבועי, המוצרים שתכיני, חומרי גלם ורשימת קנייה — מותאמים אישית.</p></div>
       <div class="card"><div class="ic">🧪</div><h3>המתכונים המותאמים אישית</h3><p>כל הפורמולות — מרכיבים, הכנה ושימוש — מותאמות לסוג העור שלך, בתוך המערכת.</p></div>
+      <div class="card"><span class="tag">🎁 בונוס</span><div class="ic">🗺️</div><h3>מפת סינון המגירה</h3><p>דף עבודה אישי: עברי על מוצרי הטיפוח שכבר יש לך בבית, וסנני מה מתאים לשגרה שלך, מה מיותר ומה כדאי להשהות.</p></div>
       <div class="card"><span class="tag">🎁 מתנה</span><div class="ic">🎬</div><h3>שיעור "להבין את העור"</h3><p>שיעור וידאו ב-3 חלקים: אפידרמיס, דרמיס וסוגי עור — כדי להבין את מה שאת מטפחת.</p></div>
       <div class="card"><div class="ic">📚</div><h3>ספריית התוכן</h3><p>שמנים, חמאות, חומרי גלם ושגרות טיפוח טבעיות, פתוחים לגלישה חופשית.</p></div>
       <div class="card"><span class="tag">🎁 בונוס</span><div class="ic">🧪</div><h3>בנק 28 המתכונים</h3><p>מתכונים טבעיים נוספים להכנה בבית — לפנים, לגוף ולאמבט.</p></div>
@@ -230,13 +231,9 @@
           <li>שיעור וידאו "להבין את העור"</li>
           <li>ספריית התוכן המלאה על קוסמטיקה טבעית</li>
           <li>בנק 28 המתכונים</li>
+          <li>🎁 מפת סינון המגירה — דף עבודה להורדה</li>
         </ul>
-        <form onsubmit="return goPay(event)">
-          <input type="text" name="name" placeholder="שם מלא" required>
-          <input type="email" name="email" placeholder="כתובת מייל" required>
-          <input type="tel" name="phone" placeholder="טלפון" required>
-          <button type="submit" class="cta">אני רוצה לפתוח את קוד העור שלי ←</button>
-        </form>
+        <a class="cta" href="https://yalihodschool.co.il/checkout/?add-to-cart=28687" style="display:block;text-align:center;text-decoration:none;box-sizing:border-box">אני רוצה לפתוח את קוד העור שלי ←</a>
         <p class="secure">🔒 תשלום מאובטח · הגישה נפתחת מיד לאחר התשלום</p>
       </div>
     </div>
@@ -258,17 +255,5 @@
 
 <footer>יאלי הוד</footer>
 
-<script>
-var PAY97='https://icom.yaad.net/p/?Amount=9700&Coin=1&FixTash=False&Info=%D7%A7%D7%95%D7%93%20%D7%94%D7%A2%D7%95%D7%A8&Masof=4501400931&MoreData=True&Order=KODHAOR-97&PageLang=HEB&Tash=1&UTF8=True&UTF8out=True&action=pay&sendemail=True&signature=d3c5385be5257ff83b5bc4948f30788c1036a665cc1df9ec3b82f3c65afb56a1';
-function goPay(e){
-  e.preventDefault();
-  try{ var f=e.target;
-    localStorage.setItem('kh_lead', JSON.stringify({name:f.name.value,email:f.email.value,phone:f.phone.value}));
-    localStorage.setItem('kh_email', f.email.value);
-  }catch(err){}
-  window.location.href=PAY97;
-  return false;
-}
-</script>
 </body>
 </html>
