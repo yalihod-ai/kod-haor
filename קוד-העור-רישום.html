@@ -106,7 +106,7 @@
 </style>
 </head>
 <body>
-<div class="draftnote">✍️ טיוטה לעריכה · התשלום עדיין לא מחובר (יעד שריג)</div>
+<div class="draftnote">🧪 לבדיקה: <a href="https://icom.yaad.net/p/?Amount=500&Coin=1&FixTash=False&Info=%D7%A7%D7%95%D7%93%20%D7%94%D7%A2%D7%95%D7%A8&Masof=4501400931&MoreData=True&Order=KODHAOR-TEST5&PageLang=HEB&Tash=1&UTF8=True&UTF8out=True&action=pay&sendemail=True&signature=81e9d5b43313dcda573d2dc7be09fd9212c0c64d78225c585cc080805bf7dcf2" style="color:var(--gold-deep);font-weight:800">תשלום בדיקה 5₪ ←</a> · הכפתור הראשי מחובר לתשלום מלא 97₪</div>
 
 <div class="logobar"><img src="logo.png" alt="יאלי הוד"></div>
 
@@ -259,10 +259,14 @@
 <footer>יאלי הוד</footer>
 
 <script>
+var PAY97='https://icom.yaad.net/p/?Amount=9700&Coin=1&FixTash=False&Info=%D7%A7%D7%95%D7%93%20%D7%94%D7%A2%D7%95%D7%A8&Masof=4501400931&MoreData=True&Order=KODHAOR-97&PageLang=HEB&Tash=1&UTF8=True&UTF8out=True&action=pay&sendemail=True&signature=d3c5385be5257ff83b5bc4948f30788c1036a665cc1df9ec3b82f3c65afb56a1';
 function goPay(e){
   e.preventDefault();
-  // בהמשך: כאן נחבר את שער התשלום של יעד שריג + שמירת הליד ב-Flashy
-  alert('כאן ייפתח שער התשלום המאובטח (יעד שריג).\nלאחר תשלום מוצלח — כניסה אוטומטית לקוד העור.');
+  try{ var f=e.target;
+    localStorage.setItem('kh_lead', JSON.stringify({name:f.name.value,email:f.email.value,phone:f.phone.value}));
+    localStorage.setItem('kh_email', f.email.value);
+  }catch(err){}
+  window.location.href=PAY97;
   return false;
 }
 </script>

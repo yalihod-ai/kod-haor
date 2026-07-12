@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ברוכה הבאה לקוד העור</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+ :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;--gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--shadow:0 12px 44px rgba(108,83,54,.14)}
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:'Heebo',sans-serif;background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 65%,var(--cream-deep));color:var(--brown);line-height:1.7;min-height:100vh}
+ .logobar{text-align:center;padding:22px 0 4px}.logobar img{height:100px}
+ .box{max-width:560px;margin:30px auto 60px;background:#fff;border:1px solid var(--cream-deep);border-radius:22px;box-shadow:var(--shadow);padding:44px 34px;text-align:center}
+ .kick{display:inline-block;background:rgba(194,166,110,.18);color:var(--gold-deep);font-weight:700;letter-spacing:1px;font-size:.82rem;padding:7px 16px;border-radius:999px;margin-bottom:18px}
+ h1{font-size:2rem;font-weight:900;margin-bottom:12px}h1 .g{color:var(--gold-deep)}
+ p.sub{color:var(--brown-soft);font-size:1.08rem;margin-bottom:26px}
+ input{width:100%;padding:15px 16px;border:1.5px solid var(--cream-deep);border-radius:12px;font-family:'Heebo';font-size:1.05rem;background:var(--white);color:var(--brown);margin-bottom:14px;text-align:center}
+ input:focus{outline:0;border-color:var(--gold)}
+ .cta{display:inline-block;width:100%;background:var(--gold-deep);color:#fff;font-weight:800;font-size:1.12rem;padding:16px;border:0;border-radius:999px;cursor:pointer;font-family:'Heebo';box-shadow:0 10px 30px rgba(169,140,80,.4)}
+ .cta:hover{background:var(--brown)}
+ .err{color:#b5654a;font-weight:600;font-size:.92rem;margin-bottom:10px;min-height:1.1em}
+ .steps{text-align:right;max-width:400px;margin:24px auto 0;color:var(--brown-soft);font-size:.98rem}
+ .steps li{margin-bottom:6px;list-style:none;padding-right:24px;position:relative}
+ .steps li:before{content:'✦';position:absolute;right:0;color:var(--gold-deep)}
+ footer{text-align:center;padding:20px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700}
+</style></head><body>
+<div class="logobar"><img src="logo.png" alt="יאלי הוד"></div>
+<div class="box">
+  <span class="kick">🎉 התשלום התקבל</span>
+  <h1>ברוכה הבאה ל<span class="g">קוד העור</span></h1>
+  <p class="sub">נותרו רק שני צעדים קטנים כדי לפתוח את השגרה, הפורמולות והמדריכים המותאמים אישית שלך.</p>
+  <div class="err" id="err"></div>
+  <input type="email" id="email" placeholder="כתובת המייל שלך">
+  <button class="cta" onclick="enter()">להתחלת האבחון ←</button>
+  <ul class="steps">
+    <li>עונה על אבחון קצר (פעם אחת) שמזהה את מצב העור שלך</li>
+    <li>מקבלת את השגרה, המתכונים המלאים וחומרי הגלם — לפי העור שלך</li>
+    <li>נכנסת לספרייה, לבנק המתכונים ולשיעור המתנה</li>
+  </ul>
+</div>
+<footer>יאלי הוד</footer>
+<script>
+try{ var e=localStorage.getItem('kh_email'); if(e) document.getElementById('email').value=e; }catch(x){}
+function enter(){
+  var v=document.getElementById('email').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ document.getElementById('err').textContent='בבקשה הכניסי כתובת מייל תקינה.'; return; }
+  try{ localStorage.setItem('kh_email',v); localStorage.setItem('kh_paid','1'); }catch(x){}
+  window.location.href='קוד-העור-אבחון.html';
+}
+</script>
+</body></html>
