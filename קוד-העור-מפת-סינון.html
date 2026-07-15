@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מפת סינון המגירה · קוד העור</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{--cream:#efebe0;--cream-deep:#e5dfce;--brown:#6c5336;--brown-soft:#8a7154;--gold:#c2a66e;--gold-deep:#a98c50;--white:#fbfaf6;--shadow:0 10px 40px rgba(108,83,54,.10)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Heebo',sans-serif;background:#ffffff;color:var(--brown);line-height:1.7}
+  h1,h2,h3{font-family:'Heebo';font-weight:800;line-height:1.25}
+  .wrap{max-width:900px;margin:0 auto;padding:0 22px}
+  .logobar{text-align:center;padding:18px 0 2px}.logobar img{height:92px}
+  .back{display:inline-block;color:var(--brown-soft);font-weight:700;text-decoration:none;padding:8px 0}
+  header{text-align:center;padding:22px 0 8px;background:radial-gradient(120% 90% at 50% 0%,var(--white),var(--cream) 70%);border-bottom:1px solid rgba(194,166,110,.3);border-radius:0 0 26px 26px}
+  .kick{display:inline-block;background:rgba(194,166,110,.18);color:var(--gold-deep);font-weight:700;letter-spacing:1px;font-size:.8rem;padding:7px 15px;border-radius:999px;margin-bottom:12px}
+  header h1{font-size:2.2rem;font-weight:900;margin-bottom:8px}header h1 .g{color:var(--gold-deep)}
+  header .sub{color:var(--brown-soft);font-size:1.08rem;max-width:600px;margin:0 auto 18px}
+  .pdfbtn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--gold-deep);border:1.5px solid var(--gold);font-weight:800;font-size:.98rem;padding:11px 22px;border-radius:999px;text-decoration:none;transition:.16s;margin-bottom:26px}
+  .pdfbtn:hover{background:var(--gold-deep);color:#fff;border-color:var(--gold-deep)}
+  section{padding:30px 0}
+  .card{background:#fff;border:1px solid var(--cream-deep);border-radius:18px;box-shadow:var(--shadow);padding:26px 26px;margin-bottom:22px}
+  .card h2{font-size:1.4rem;margin-bottom:6px}.card h2 .g{color:var(--gold-deep)}
+  .card .intro{color:var(--brown-soft);margin-bottom:14px}
+  .card p{margin-bottom:10px}
+  ul.clean{list-style:none;display:grid;gap:9px;margin-top:6px}
+  ul.clean li{padding-right:26px;position:relative}
+  ul.clean li:before{content:'✓';position:absolute;right:0;color:var(--gold-deep);font-weight:900}
+  ul.dot li:before{content:'•';color:var(--gold-deep);font-size:1.2em;top:-2px}
+  .catname{font-weight:800;color:var(--brown);margin:14px 0 4px}
+  .catname:first-of-type{margin-top:4px}
+  .accent-keep{border-top:5px solid #7fa86b}
+  .accent-pause{border-top:5px solid #d8a23e}
+  .accent-redundant{border-top:5px solid #b98a8a}
+  .accent-recheck{border-top:5px solid #9a8cc2}
+  .accent-replace{border-top:5px solid var(--gold-deep)}
+  .golden{background:var(--brown);color:var(--cream);border-radius:18px;padding:26px 28px;margin:8px 0 22px;text-align:center}
+  .golden .lbl{color:var(--gold);font-weight:800;letter-spacing:1px;font-size:.85rem;margin-bottom:10px}
+  .golden p{font-size:1.15rem;color:#fff;margin-bottom:10px;font-weight:600}
+  .golden .foot{color:var(--cream);opacity:.85;font-size:.95rem;font-weight:400}
+  .tool{background:var(--white);border:1px solid var(--cream-deep)}
+  .tool .form{display:grid;gap:12px;margin:8px 0 18px}
+  .tool label{font-weight:700;font-size:.92rem;display:block;margin-bottom:4px}
+  .tool input,.tool select,.tool textarea{width:100%;padding:12px 14px;border:1.5px solid var(--cream-deep);border-radius:11px;font-family:'Heebo';font-size:1rem;color:var(--brown);background:#fff}
+  .tool input:focus,.tool select:focus,.tool textarea:focus{outline:0;border-color:var(--gold)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr}}
+  .addbtn{background:var(--gold-deep);color:#fff;font-weight:800;font-size:1.02rem;padding:14px;border:0;border-radius:999px;cursor:pointer;font-family:'Heebo'}
+  .addbtn:hover{background:var(--brown)}
+  .prod{background:#fff;border:1px solid var(--cream-deep);border-radius:14px;padding:16px 18px;margin-bottom:12px;border-right:5px solid var(--cream-deep)}
+  .prod.d-keep{border-right-color:#7fa86b}
+  .prod.d-pause{border-right-color:#d8a23e}
+  .prod.d-finish{border-right-color:#c26b6b}
+  .prod.d-replace{border-right-color:var(--gold-deep)}
+  .prod.d-recheck{border-right-color:#9a8cc2}
+  .prod .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .prod .pname{font-weight:800;font-size:1.1rem}
+  .prod .dec{font-weight:800;font-size:.86rem;padding:4px 12px;border-radius:999px;white-space:nowrap}
+  .dec.d-keep{background:#e8f0e2;color:#4e7040}
+  .dec.d-pause{background:#faf0da;color:#95691a}
+  .dec.d-finish{background:#f7e5e5;color:#a34a4a}
+  .dec.d-replace{background:rgba(194,166,110,.2);color:var(--gold-deep)}
+  .dec.d-recheck{background:#ece8f5;color:#6a5b9a}
+  .prod .meta{color:var(--brown-soft);font-size:.92rem;margin-top:6px}
+  .prod .del{background:none;border:0;color:#b98a8a;font-weight:700;cursor:pointer;font-family:'Heebo';font-size:.85rem;margin-top:8px;padding:0}
+  .empty{color:var(--brown-soft);text-align:center;padding:16px;font-style:italic}
+  .saved{color:#7fa86b;font-weight:700;font-size:.85rem;text-align:center;min-height:1.1em;margin-top:6px}
+  .summary .row{margin-bottom:16px}
+  .closing{text-align:center;color:var(--brown-soft);max-width:640px;margin:6px auto 0;font-size:1.02rem}
+  .gate{max-width:560px;margin:40px auto;background:#fff;border:1px solid var(--cream-deep);border-radius:20px;box-shadow:var(--shadow);padding:40px 30px;text-align:center}
+  .gate h2{font-size:1.5rem;margin-bottom:10px}
+  .gate p{color:var(--brown-soft);margin-bottom:22px}
+  .gate a{display:inline-block;background:var(--gold-deep);color:#fff;font-weight:800;padding:14px 34px;border-radius:999px;text-decoration:none}
+  footer{text-align:center;padding:28px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700;background:var(--cream);margin-top:20px}
+</style>
+</head>
+<body>
+<div class="logobar"><img src="https://yalihod-ai.github.io/kod-haor/logo.png" alt="יאלי הוד"></div>
+<div class="wrap"><a class="back" href="https://yalihodschool.co.il/kod-haor-home/">&#8594; חזרה לבית</a></div>
+
+<div id="gate" style="display:none">
+  <div class="gate">
+    <h2>רגע לפני מפת הסינון…</h2>
+    <p>כדי לפתוח את מפת הסינון המותאמת לעור שלך, קודם צריך לעבור את האבחון הקצר ולקבל את פרופיל העור שלך.</p>
+    <a href="https://yalihodschool.co.il/kod-haor-diagnosis/">לאבחון שלי &#8592;</a>
+  </div>
+</div>
+
+<div id="app" style="display:none">
+  <header><div class="wrap">
+    <span class="kick" id="typeBadge">✦ קוד העור</span>
+    <h1>מפת <span class="g">סינון המגירה</span></h1>
+    <p class="sub" id="subtitle"></p>
+    <a class="pdfbtn" id="pdfTop" href="#" target="_blank" rel="noopener">⬇ הורדת המפה כ-PDF (לעבודה על הנייר)</a>
+  </div></header>
+  <div class="wrap" id="content"></div>
+  <footer>יאלי הוד</footer>
+</div>
+
+<script>
+var MAP = {"dry": {"subtitle": "לעור יבש / מיובש שזקוק ללחות, נוחות ושיקום", "howto": [{"t": "p", "x": "מפת הסינון הזו נועדה לעזור לך לעבור על מוצרי הטיפוח שכבר יש לך בבית אחרי שקיבלת את תוצאת קוד העור."}, {"t": "p", "x": "המטרה היא לא לזרוק הכול, אלא לזהות אילו מוצרים באמת עוזרים לעור להרגיש נוח, לח וגמיש יותר — ואילו מוצרים אולי משאירים אותו מתוח, יבש או תלוי בעוד ועוד שכבות."}, {"t": "p", "x": "אם קיבלת את התוצאה עור יבש / מיובש, המשמעות היא שהעור שלך כנראה זקוק לבסיס חזק יותר של לחות, רכיבים קושרי מים, הזנה ותמיכה במחסום העור."}], "needs": [{"t": "p", "x": "המטרה כאן היא לא להעמיס עוד מוצרים, אלא לזהות מה באמת תומך במצב העור שקיבלת באבחון ולבנות שגרה שיש לה היגיון."}, {"t": "li", "x": "לחות זמינה וקבועה לאורך היום."}, {"t": "li", "x": "רכיבים קושרי מים כמו גליצרין, חומצה היאלורונית, פנתנול."}, {"t": "li", "x": "שכבת הזנה עדינה שתעזור להפחית התאדות מים מהעור."}, {"t": "li", "x": "ניקוי עדין שלא משאיר תחושת מתיחה."}, {"t": "li", "x": "שיקום מחסום העור והפחתת גירוי."}, {"t": "li", "x": "שגרה פשוטה, עקבית ולא מייבשת."}], "keep": [{"t": "cat", "x": "השאירי מוצרים שיש להם תפקיד ברור ושעוזרים לעור להרגיש נוח, מאוזן ונעים יותר לאורך זמן."}, {"t": "cat", "x": "מוצרי ניקוי קרמיים או עדינים"}, {"t": "li", "x": "העור לא מרגיש “נקי מדי” אחרי הניקוי."}, {"t": "li", "x": "אין תחושת מתיחה מיד אחרי השטיפה."}, {"t": "li", "x": "המוצר מתאים לשימוש יומיומי."}, {"t": "li", "x": "הניקוי לא משאיר יובש או חספוס."}, {"t": "cat", "x": "מוצרים עם חומרי לחות"}, {"t": "li", "x": "גליצרין, חומצה היאלורונית / Sodium Hyaluronate"}, {"t": "li", "x": "פנתנול"}, {"t": "li", "x": "אלוורה"}, {"t": "li", "x": "אוריאה"}, {"t": "cat", "x": "מוצרים עם שמנים מזינים"}, {"t": "li", "x": "חמאת שיאה"}, {"t": "li", "x": "סקוואלן"}, {"t": "li", "x": "שמן חוחובה"}, {"t": "li", "x": "שמן אבוקדו"}, {"t": "li", "x": "שמן מקדמיה"}, {"t": "li", "x": "שמן נר הלילה"}, {"t": "li", "x": "שמן ארגן"}, {"t": "cat", "x": "מוצרים עם חומרים מרגיעים"}, {"t": "li", "x": "אלנטואין"}, {"t": "li", "x": "פנתנול"}, {"t": "li", "x": "שיבולת שועל / Oat"}, {"t": "li", "x": "קלנדולה"}, {"t": "li", "x": "קמומיל"}], "pause": [{"t": "p", "x": "לא כל מוצר שלא מתאים כרגע צריך להיזרק. לפעמים נכון להשהות אותו לכמה שבועות, לחזור לבסיס פשוט יותר, ואז לבדוק אם באמת יש לו מקום בשגרה."}, {"t": "li", "x": "תרחיצים מקציפים מאוד שמשאירים עור מתוח."}, {"t": "li", "x": "טונרים או סרומים שמעקצצים או מייבשים."}, {"t": "li", "x": "פילינגים תכופים או חזקים מדי."}, {"t": "li", "x": "מסכות חימר מייבשות בלי איזון של לחות."}, {"t": "li", "x": "מוצרים שמרגישים טוב ברגע הראשון אבל אחרי שעה העור שוב צמא."}], "redundant": [{"t": "p", "x": "עברי על המוצרים שלך ובדקי אם יש כמה מוצרים שעושים כמעט את אותו הדבר, או כאלה שנשארו במגירה בלי תפקיד ברור."}, {"t": "li", "x": "כמה סרומים של לחות בלי קרם שסוגר מעליהם."}, {"t": "li", "x": "כמה קרמים שלא באמת נותנים תחושת נוחות לאורך זמן."}, {"t": "li", "x": "כמה מסכות “זוהר” שמייבשות במקום להזין."}, {"t": "li", "x": "מוצרים שנמרחים שוב ושוב כי אף אחד מהם לא מספיק."}, {"t": "p", "x": "אם את לא יודעת למה מוצר נמצא בשגרה שלך — הוא לא חייב להיזרק, אבל הוא בהחלט צריך לעבור בדיקה."}], "recheck": [{"t": "p", "x": "שימי לב במיוחד למוצרים שמבטיחים תוצאה גדולה מאוד, אבל בפועל לא ברור האם הם באמת מתאימים למצב העור שלך עכשיו."}, {"t": "li", "x": "Oil free אם העור יבש מאוד"}, {"t": "li", "x": "פילינג יומיומי"}, {"t": "li", "x": "ניקוי עמוק אגרסיבי/מקציף"}, {"t": "li", "x": "מוצרי “מייבש פצעונים” על כל הפנים"}, {"t": "li", "x": "מרקם קליל מדי שלא נותן מענה ליובש"}, {"t": "p", "x": "שאלי את עצמך: האם המוצר באמת משפר את תחושת העור שלי? האם הוא חלק משגרה ברורה? האם אני משתמשת בו כי הוא מתאים — או כי הוא היה יקר, מומלץ או פשוט כבר נמצא במגירה?"}], "replace": [{"t": "p", "x": "אחד היתרונות של קוד העור הוא שאת לא חייבת להישאר תלויה רק במוצרי מדף. אפשר לבחור מתכונים טבעיים שממלאים תפקיד ברור בשגרה שלך."}, {"t": "li", "x": "ג׳ל לחות עשיר בחומצה היאלורונית ופנתנול."}, {"t": "li", "x": "קרם לחות משקם ועדין."}, {"t": "li", "x": "מסכת לחות והרגעה."}, {"t": "li", "x": "סרום שמנים עדין לנעילת לחות."}, {"t": "li", "x": "קרם בסיס מועשר בגליצרין / פנתנול / הידרוסול."}, {"t": "li", "x": "משחה לטיפול נקודתי לאזורים יבשים במיוחד."}, {"t": "p", "x": "המטרה היא לא להחליף כל מוצר מיד. המטרה היא להבין מה חסר בשגרה, ואז לבחור מתכון שממלא צורך אמיתי."}], "golden": ["האם המוצר הזה באמת מוסיף לעור לחות ונוחות — או שהוא רק נותן תחושה רגעית ואז העור שוב מתייבש?", "לפני שאת מוסיפה עוד מוצר לשגרה, חזרי לשאלה הזו. היא תעזור לך לבחור מתוך הבנה ולא מתוך ניחוש."]}, "oily": {"subtitle": "לעור שמן שזקוק לאיזון, קלילות וניקוי חכם", "howto": [{"t": "p", "x": "מפת הסינון הזו נועדה לעזור לך לעבור על מוצרי הטיפוח שכבר יש לך בבית אחרי שקיבלת את תוצאת קוד העור."}, {"t": "p", "x": "המטרה היא לא לייבש את העור ולא “להילחם” בו, אלא להבין אילו מוצרים באמת מאזנים אותו ואילו מוצרים גורמים לו להרגיש כבד, מבריק, מגורה או לא מאוזן."}, {"t": "p", "x": "אם קיבלת את התוצאה עור שמן, המשמעות היא שהעור שלך כנראה זקוק לניקוי עדין אך יעיל, לחות קלילה, ויסות סבום, מניעת עומס על הנקבוביות ושגרה שלא מייבשת אותו יתר על המידה."}], "needs": [{"t": "p", "x": "המטרה כאן היא לא להעמיס עוד מוצרים, אלא לזהות מה באמת תומך במצב העור שקיבלת באבחון ולבנות שגרה שיש לה היגיון."}, {"t": "li", "x": "ניקוי עדין שמסיר עודפי שומן בלי לייבש באגרסיביות."}, {"t": "li", "x": "לחות קלילה — כן, גם עור שמן צריך לחות."}, {"t": "li", "x": "מרקמים לא כבדים שלא יושבים על העור."}, {"t": "li", "x": "איזון סבום בלי תחושת “ייבוש”."}, {"t": "li", "x": "תמיכה בנקבוביות סתומות בלי קילוף יתר."}, {"t": "li", "x": "שגרה יציבה שמפחיתה תנודות בין שומן ליובש."}], "keep": [{"t": "cat", "x": "השאירי מוצרים שיש להם תפקיד ברור ושעוזרים לעור להרגיש נוח, מאוזן ונעים יותר לאורך זמן."}, {"t": "cat", "x": "מוצרי ניקוי עדינים אך יעילים"}, {"t": "li", "x": "מנקים היטב בלי להשאיר עור צורב או מתוח."}, {"t": "li", "x": "לא גורמים לעור להרגיש “חרוק”."}, {"t": "li", "x": "מתאימים לשימוש יומיומי."}, {"t": "li", "x": "לא יוצרים צורך לנקות שוב ושוב במהלך היום."}, {"t": "cat", "x": "מוצרים עם לחות קלילה"}, {"t": "li", "x": "גליצרין במרקם קליל"}, {"t": "li", "x": "חומצה היאלורונית"}, {"t": "li", "x": "אלוורה"}, {"t": "li", "x": "פנתנול"}, {"t": "li", "x": "ג׳ל או קרם ג׳ל קליל"}, {"t": "cat", "x": "מוצרים עם חומרים מאזנים"}, {"t": "li", "x": "ניאצינאמיד אם מתאים לעור שלך"}, {"t": "li", "x": "תה ירוק"}, {"t": "li", "x": "אבץ במוצרים מתאימים"}, {"t": "li", "x": "הידרוסולים עדינים"}, {"t": "li", "x": "חומרים מרגיעים שמפחיתים תחושת עומס"}, {"t": "cat", "x": "שמנים קלים מאוד, אם יש צורך"}, {"t": "li", "x": "שמן חוחובה"}, {"t": "li", "x": "סקוואלן"}, {"t": "li", "x": "שמן ענבים"}, {"t": "li", "x": "שימוש בכמות קטנה בלבד ועל עור לח"}], "pause": [{"t": "p", "x": "לא כל מוצר שלא מתאים כרגע צריך להיזרק. לפעמים נכון להשהות אותו לכמה שבועות, לחזור לבסיס פשוט יותר, ואז לבדוק אם באמת יש לו מקום בשגרה."}, {"t": "li", "x": "מוצרים שמייבשים את העור עד תחושת מתיחה."}, {"t": "li", "x": "סבונים חזקים או ניקוי חוזר כמה פעמים ביום."}, {"t": "li", "x": "קרמים כבדים שיושבים על העור ומגבירים ברק."}, {"t": "li", "x": "שמנים עשירים מדי שמרגישים חונקים."}, {"t": "li", "x": "פילינגים או חומצות בתדירות גבוהה בלי שיטה."}], "redundant": [{"t": "p", "x": "עברי על המוצרים שלך ובדקי אם יש כמה מוצרים שעושים כמעט את אותו הדבר, או כאלה שנשארו במגירה בלי תפקיד ברור."}, {"t": "li", "x": "כמה מוצרי ניקוי שונים מתוך ניסיון “להוריד שומן”."}, {"t": "li", "x": "כמה סרומים לאיזון בלי להבין מה כל אחד עושה."}, {"t": "li", "x": "כמה מסכות חימר מייבשות מדי (בלי איזון לחות)."}, {"t": "li", "x": "קרמים כבדים שנקנו כי הם “טובים”, אבל לא מתאימים למרקם שהעור צריך."}, {"t": "p", "x": "אם את לא יודעת למה מוצר נמצא בשגרה שלך — הוא לא חייב להיזרק, אבל הוא בהחלט צריך לעבור בדיקה."}], "recheck": [{"t": "p", "x": "שימי לב במיוחד למוצרים שמבטיחים תוצאה גדולה מאוד, אבל בפועל לא ברור האם הם באמת מתאימים למצב העור שלך עכשיו."}, {"t": "li", "x": "ייבוש פצעונים על כל הפנים"}, {"t": "li", "x": "ניקוי עמוק מדי יום"}, {"t": "li", "x": "Oil control אגרסיבי"}, {"t": "li", "x": "מסכות חימר תכופות מדי (מעבר לפעם-פעמיים בשבוע)"}, {"t": "li", "x": "שכבות רבות של סרומים וקרמים על עור שמרגיש עמוס"}, {"t": "p", "x": "שאלי את עצמך: האם המוצר באמת משפר את תחושת העור שלי? האם הוא חלק משגרה ברורה? האם אני משתמשת בו כי הוא מתאים — או כי הוא היה יקר, מומלץ או פשוט כבר נמצא במגירה?"}], "replace": [{"t": "p", "x": "אחד היתרונות של קוד העור הוא שאת לא חייבת להישאר תלויה רק במוצרי מדף. אפשר לבחור מתכונים טבעיים שממלאים תפקיד ברור בשגרה שלך."}, {"t": "li", "x": "ג׳ל לחות קליל."}, {"t": "li", "x": "קרם ג׳ל מאזן."}, {"t": "li", "x": "מסכת חימר עדינה ומאוזנת, לא מייבשת."}, {"t": "li", "x": "סרום קליל עם לחות והרגעה."}, {"t": "li", "x": "תערובת שמנים קלה מאוד בכמות קטנה."}, {"t": "li", "x": "תרחיץ פנים עדין ללא ייבוש יתר."}, {"t": "p", "x": "המטרה היא לא להחליף כל מוצר מיד. המטרה היא להבין מה חסר בשגרה, ואז לבחור מתכון שממלא צורך אמיתי."}], "golden": ["האם אני מנסה לאזן את העור — או שאני מייבשת אותו כל כך שהוא צריך לפצות על זה?", "לפני שאת מוסיפה עוד מוצר לשגרה, חזרי לשאלה הזו. היא תעזור לך לבחור מתוך הבנה ולא מתוך ניחוש."]}, "combo": {"subtitle": "לעור מעורב שזקוק לאיזון בין אזורים שונים", "howto": [{"t": "p", "x": "מפת הסינון הזו נועדה לעזור לך לעבור על מוצרי הטיפוח שכבר יש לך בבית אחרי שקיבלת את תוצאת קוד העור."}, {"t": "p", "x": "עור מעורב יכול לבלבל: אזור אחד מרגיש שומני או מבריק, אזור אחר יבש או מתוח, ולפעמים אותו מוצר מרגיש טוב במקום אחד ופחות טוב במקום אחר."}, {"t": "p", "x": "אם קיבלת את התוצאה עור מעורב, המטרה היא לא לבחור צד — לא “לטפל בו כמו עור שמן” ולא “לטפל בו כמו עור יבש” — אלא לבנות שגרה שמכבדת את ההבדלים בין האזורים."}], "needs": [{"t": "p", "x": "המטרה כאן היא לא להעמיס עוד מוצרים, אלא לזהות מה באמת תומך במצב העור שקיבלת באבחון ולבנות שגרה שיש לה היגיון."}, {"t": "li", "x": "ניקוי עדין שמאזן בלי לייבש את הלחיים."}, {"t": "li", "x": "לחות קלילה שמתאימה לכל הפנים או נבנית בשכבות."}, {"t": "li", "x": "התאמה אזורית: פחות עומס באזור ה־T ויותר תמיכה באזורים יבשים."}, {"t": "li", "x": "מוצרים שלא מכבידים ולא מייבשים."}, {"t": "li", "x": "שימוש חכם במסכות או חומרים פעילים לפי אזורים."}, {"t": "li", "x": "שגרה פשוטה עם אפשרות לדייק לפי תחושה."}], "keep": [{"t": "cat", "x": "השאירי מוצרים שיש להם תפקיד ברור ושעוזרים לעור להרגיש נוח, מאוזן ונעים יותר לאורך זמן."}, {"t": "cat", "x": "מוצרי ניקוי מאוזנים"}, {"t": "li", "x": "לא מייבשים את הלחיים."}, {"t": "li", "x": "מסירים עודפי שומן באזור ה־T בלי תחושת חריקה."}, {"t": "li", "x": "מתאימים לשימוש יומיומי."}, {"t": "li", "x": "לא מחייבים אותך להוסיף הרבה קרם אחר כך."}, {"t": "cat", "x": "לחות גמישה בשכבות"}, {"t": "li", "x": "ג׳ל לחות קליל"}, {"t": "li", "x": "קרם קליל לכל הפנים"}, {"t": "li", "x": "תוספת שמן או קרם עשיר יותר רק לאזורים יבשים"}, {"t": "li", "x": "חומצה היאלורונית"}, {"t": "li", "x": "גליצרין"}, {"t": "li", "x": "פנתנול"}, {"t": "cat", "x": "מוצרים לאיזון אזורי"}, {"t": "li", "x": "מסכת חימר מאזנת על כל הפנים"}, {"t": "li", "x": "סרום קליל לאזורים מבריקים"}, {"t": "li", "x": "קרם הזנה נקודתי ללחיים או אזורים יבשים"}, {"t": "li", "x": "מוצרים שמאפשרים מינון ולא “הכול או כלום”"}, {"t": "cat", "x": "מוצרים עם רכיבים מרגיעים ומאזנים"}, {"t": "li", "x": "אלוורה"}, {"t": "li", "x": "תה ירוק"}, {"t": "li", "x": "פנתנול"}, {"t": "li", "x": "קלנדולה"}, {"t": "li", "x": "סקוואלן בכמות קטנה"}, {"t": "li", "x": "חוחובה"}], "pause": [{"t": "p", "x": "לא כל מוצר שלא מתאים כרגע צריך להיזרק. לפעמים נכון להשהות אותו לכמה שבועות, לחזור לבסיס פשוט יותר, ואז לבדוק אם באמת יש לו מקום בשגרה."}, {"t": "li", "x": "מוצר אחד כבד שנמרח על כל הפנים למרות שהוא מכביד באזור ה־T."}, {"t": "li", "x": "מוצר מייבש שמכוון לשומן אבל מייבש את הלחיים."}, {"t": "li", "x": "פילינג חזק או חומצות על כל הפנים כשיש אזורים רגישים."}, {"t": "li", "x": "שגרה שמחליפה קיצוניות: פעם מייבשת, פעם מעמיסה."}], "redundant": [{"t": "p", "x": "עברי על המוצרים שלך ובדקי אם יש כמה מוצרים שעושים כמעט את אותו הדבר, או כאלה שנשארו במגירה בלי תפקיד ברור."}, {"t": "li", "x": "כמה קרמים כי אף אחד לא מתאים לכל האזורים."}, {"t": "li", "x": "כמה מוצרי ניקוי — אחד “לשומן” ואחד “ליובש” בלי שיטה ברורה."}, {"t": "li", "x": "כמה מסכות שמטפלות באותה בעיה."}, {"t": "li", "x": "סרומים שונים שלא ברור איפה להשתמש בכל אחד."}, {"t": "p", "x": "אם את לא יודעת למה מוצר נמצא בשגרה שלך — הוא לא חייב להיזרק, אבל הוא בהחלט צריך לעבור בדיקה."}], "recheck": [{"t": "p", "x": "שימי לב במיוחד למוצרים שמבטיחים תוצאה גדולה מאוד, אבל בפועל לא ברור האם הם באמת מתאימים למצב העור שלך עכשיו."}, {"t": "li", "x": "לכל סוגי העור"}, {"t": "li", "x": "מאט לכל היום"}, {"t": "li", "x": "קרם עשיר מאוד לכל הפנים"}, {"t": "li", "x": "ניקוי עמוק אגרסיבי/מקציף יומיומי"}, {"t": "li", "x": "פילינג חזק או חומצות על כל הפנים"}, {"t": "p", "x": "שאלי את עצמך: האם המוצר באמת משפר את תחושת העור שלי? האם הוא חלק משגרה ברורה? האם אני משתמשת בו כי הוא מתאים — או כי הוא היה יקר, מומלץ או פשוט כבר נמצא במגירה?"}], "replace": [{"t": "p", "x": "אחד היתרונות של קוד העור הוא שאת לא חייבת להישאר תלויה רק במוצרי מדף. אפשר לבחור מתכונים טבעיים שממלאים תפקיד ברור בשגרה שלך."}, {"t": "li", "x": "קרם ג׳ל קליל לכל הפנים."}, {"t": "li", "x": "סרום לחות מאוזן."}, {"t": "li", "x": "תערובת שמנים קלה לשימוש נקודתי באזורים יבשים."}, {"t": "li", "x": "מסכת חימר מאזנת על כל הפנים."}, {"t": "li", "x": "מסכת לחות ללחיים."}, {"t": "li", "x": "קרם בסיס שאפשר להעשיר לפי אזור."}, {"t": "p", "x": "המטרה היא לא להחליף כל מוצר מיד. המטרה היא להבין מה חסר בשגרה, ואז לבחור מתכון שממלא צורך אמיתי."}], "golden": ["האם אני מתייחסת לכל הפנים כאילו הן סוג עור אחד — או שאני נותנת לכל אזור את מה שהוא צריך?", "לפני שאת מוסיפה עוד מוצר לשגרה, חזרי לשאלה הזו. היא תעזור לך לבחור מתוך הבנה ולא מתוך ניחוש."]}, "normal": {"subtitle": "לעור רגיל שזקוק לשימור איזון ומניעת עומס", "howto": [{"t": "p", "x": "מפת הסינון הזו נועדה לעזור לך לעבור על מוצרי הטיפוח שכבר יש לך בבית אחרי שקיבלת את תוצאת קוד העור."}, {"t": "p", "x": "עור רגיל הוא עור יחסית מאוזן, אבל זה לא אומר שהוא לא צריך טיפוח. להפך — המטרה היא לשמר את האיזון הקיים, לתמוך בלחות, להגן על מחסום העור ולא להעמיס רק כי “צריך לעשות יותר”."}, {"t": "p", "x": "אם קיבלת את התוצאה עור רגיל, הדבר החשוב ביותר הוא לא לקלקל איזון טוב עם יותר מדי מוצרים, חומרים פעילים או החלפות תכופות."}], "needs": [{"t": "p", "x": "המטרה כאן היא לא להעמיס עוד מוצרים, אלא לזהות מה באמת תומך במצב העור שקיבלת באבחון ולבנות שגרה שיש לה היגיון."}, {"t": "li", "x": "שגרה פשוטה ועקבית."}, {"t": "li", "x": "ניקוי עדין שלא מפר את האיזון."}, {"t": "li", "x": "לחות יומיומית קלה עד בינונית."}, {"t": "li", "x": "הזנה עדינה לפי צורך."}, {"t": "li", "x": "נוגדי חמצון ותמיכה במראה חיוני."}, {"t": "li", "x": "חומרים פעילים במינון חכם ולא מתוך עומס."}], "keep": [{"t": "cat", "x": "השאירי מוצרים שיש להם תפקיד ברור ושעוזרים לעור להרגיש נוח, מאוזן ונעים יותר לאורך זמן."}, {"t": "cat", "x": "מוצרי בסיס טובים"}, {"t": "li", "x": "ניקוי עדין."}, {"t": "li", "x": "קרם לחות שמתאים ביום־יום."}, {"t": "li", "x": "מוצר הזנה עדין אם יש צורך."}, {"t": "li", "x": "מסכה שבועית שנותנת רעננות בלי גירוי."}, {"t": "cat", "x": "מוצרי עם חומרי לחות ותמיכה"}, {"t": "li", "x": "גליצרין"}, {"t": "li", "x": "חומצה היאלורונית"}, {"t": "li", "x": "פנתנול"}, {"t": "li", "x": "אלוורה"}, {"t": "li", "x": "סקוואלן קליל"}, {"t": "cat", "x": "מוצרים עם נוגדי חמצון עדינים"}, {"t": "li", "x": "ויטמין E"}, {"t": "li", "x": "תה ירוק"}, {"t": "li", "x": "נגזרות עדינות של ויטמין C"}, {"t": "li", "x": "שמנים צמחיים איכותיים במינון מתאים"}, {"t": "li", "x": "קו־אנזים Q10 אם מתאים לשגרה"}, {"t": "cat", "x": "מוצרים ששומרים על איזון"}, {"t": "li", "x": "מרקם נעים שלא מכביד."}, {"t": "li", "x": "מוצר שלא מייבש."}, {"t": "li", "x": "שגרה שלא דורשת הרבה תיקונים."}, {"t": "li", "x": "תוצאה עקבית של עור נוח, רגוע וגמיש."}], "pause": [{"t": "p", "x": "לא כל מוצר שלא מתאים כרגע צריך להיזרק. לפעמים נכון להשהות אותו לכמה שבועות, לחזור לבסיס פשוט יותר, ואז לבדוק אם באמת יש לו מקום בשגרה."}, {"t": "li", "x": "מוצרים שנקנו רק כי “צריך אנטי־אייג׳ינג” אבל לא ברור למה."}, {"t": "li", "x": "פילינגים תכופים בלי צורך אמיתי."}, {"t": "li", "x": "כמה סרומים פעילים שלא ברור תפקידם."}, {"t": "li", "x": "מוצרים שמתחילים לגרום לרגישות בעור שהיה רגוע."}, {"t": "li", "x": "החלפת שגרה כל שבוע בעקבות טרנד חדש."}], "redundant": [{"t": "p", "x": "עברי על המוצרים שלך ובדקי אם יש כמה מוצרים שעושים כמעט את אותו הדבר, או כאלה שנשארו במגירה בלי תפקיד ברור."}, {"t": "li", "x": "כמה קרמים דומים שאין ביניהם הבדל ברור."}, {"t": "li", "x": "כמה סרומים “לזוהר” כשאין צורך אמיתי בכולם."}, {"t": "li", "x": "מסכות רבות שלא נכנסות לשגרה."}, {"t": "li", "x": "מוצרים שנקנו מתוך סקרנות ולא מתוך צורך."}, {"t": "p", "x": "אם את לא יודעת למה מוצר נמצא בשגרה שלך — הוא לא חייב להיזרק, אבל הוא בהחלט צריך לעבור בדיקה."}], "recheck": [{"t": "p", "x": "שימי לב במיוחד למוצרים שמבטיחים תוצאה גדולה מאוד, אבל בפועל לא ברור האם הם באמת מתאימים למצב העור שלך עכשיו."}, {"t": "li", "x": "חזק במיוחד"}, {"t": "li", "x": "חידוש עמוק"}, {"t": "li", "x": "אנטי־אייג׳ינג עוצמתי"}, {"t": "li", "x": "ניקוי עמוק יומיומי"}, {"t": "li", "x": "שילובים רבים של חומרים פעילים בלי סיבה ברורה"}, {"t": "p", "x": "שאלי את עצמך: האם המוצר באמת משפר את תחושת העור שלי? האם הוא חלק משגרה ברורה? האם אני משתמשת בו כי הוא מתאים — או כי הוא היה יקר, מומלץ או פשוט כבר נמצא במגירה?"}], "replace": [{"t": "p", "x": "אחד היתרונות של קוד העור הוא שאת לא חייבת להישאר תלויה רק במוצרי מדף. אפשר לבחור מתכונים טבעיים שממלאים תפקיד ברור בשגרה שלך."}, {"t": "li", "x": "קרם לחות יומיומי עדין."}, {"t": "li", "x": "סרום שמנים קליל לנוגדי חמצון."}, {"t": "li", "x": "מסכת זוהר עדינה."}, {"t": "li", "x": "ג׳ל לחות קליל."}, {"t": "li", "x": "קרם בסיס מועשר לפי עונה."}, {"t": "li", "x": "פילינג גרגרים עדין פעם בשבוע — חלק קבוע מהשגרה."}, {"t": "p", "x": "המטרה היא לא להחליף כל מוצר מיד. המטרה היא להבין מה חסר בשגרה, ואז לבחור מתכון שממלא צורך אמיתי."}], "golden": ["האם המוצר הזה שומר על האיזון של העור שלי — או מוסיף עומס שלא באמת צריך?", "לפני שאת מוסיפה עוד מוצר לשגרה, חזרי לשאלה הזו. היא תעזור לך לבחור מתוך הבנה ולא מתוך ניחוש."]}, "mature": {"subtitle": "לעור בוגר שזקוק לתמיכה ממוקדת", "howto": [{"t": "p", "x": "מפת הסינון הזו נועדה לעזור לך לעבור על מוצרי הטיפוח שכבר יש לך בבית אחרי שקיבלת את תוצאת קוד העור."}, {"t": "p", "x": "המטרה היא לא לזרוק הכול. המטרה היא להבין מה באמת משרת את העור שלך עכשיו, מה כפול או מיותר, ומה אולי כבר לא מתאים לשלב שבו העור שלך נמצא."}, {"t": "p", "x": "אם קיבלת את התוצאה עור בוגר, המשמעות היא שהעור שלך כנראה זקוק ליותר תמיכה בלחות, הזנה, גמישות, מחסום עור, נוגדי חמצון ושגרה עקבית — ולא רק לעוד מוצר שמבטיח “אנטי־אייג׳ינג”."}], "needs": [{"t": "p", "x": "המטרה כאן היא לא להעמיס עוד מוצרים, אלא לזהות מה באמת תומך במצב העור שקיבלת באבחון ולבנות שגרה שיש לה היגיון."}, {"t": "li", "x": "לחות יומיומית טובה שמפחיתה תחושת מתיחה ויובש."}, {"t": "li", "x": "הזנה בשמנים וחמאות שמתאימים לעור ולא מכבידים עליו."}, {"t": "li", "x": "תמיכה במחסום העור כדי שהעור ירגיש נוח, רגוע וגמיש יותר."}, {"t": "li", "x": "נוגדי חמצון עדינים לתמיכה במראה חיוני וזוהר."}, {"t": "li", "x": "שגרת ערב איכותית ועקבית."}, {"t": "li", "x": "חומרים פעילים במידה — לא עומס של “עוד ועוד”."}], "keep": [{"t": "cat", "x": "השאירי מוצרים שיש להם תפקיד ברור ושעוזרים לעור להרגיש נוח, מאוזן ונעים יותר לאורך זמן."}, {"t": "cat", "x": "מוצרי ניקוי עדינים:"}, {"t": "li", "x": "העור לא מרגיש מתוח אחרי השימוש."}, {"t": "li", "x": "אין תחושת צריבה או יובש."}, {"t": "li", "x": "המוצר לא מקציף בצורה אגרסיבית מדי."}, {"t": "li", "x": "מתאים לשימוש יומיומי עדין."}, {"t": "cat", "x": "מוצרים עם חומרי לחות"}, {"t": "li", "x": "גליצרין"}, {"t": "li", "x": "חומצה היאלורונית / Sodium Hyaluronate"}, {"t": "li", "x": "פנתנול"}, {"t": "li", "x": "אלוורה"}, {"t": "li", "x": "בטאין"}, {"t": "li", "x": "אוריאה במינון עדין ומתאים"}, {"t": "cat", "x": "מוצרים עם שמנים מזינים"}, {"t": "li", "x": "חמאת שיאה"}, {"t": "li", "x": "סקוואלן"}, {"t": "li", "x": "שמן חוחובה"}, {"t": "li", "x": "שמן ארגן"}, {"t": "li", "x": "שמן אבוקדו"}, {"t": "li", "x": "שמן נר הלילה"}, {"t": "li", "x": "שמן רימונים"}, {"t": "li", "x": "שמן אגוז מקדמיה"}, {"t": "li", "x": "שמן מרולה"}, {"t": "cat", "x": "מוצרים עם נוגדי חמצון"}, {"t": "li", "x": "ויטמין E"}, {"t": "li", "x": "נגזרות עדינות של ויטמין C"}, {"t": "li", "x": "קו־אנזים Q10"}, {"t": "li", "x": "תה ירוק"}, {"t": "li", "x": "שמנים עשירים בנוגדי חמצון"}, {"t": "li", "x": "בקוצ׳יול אם הוא מתאים לעור שלך"}], "pause": [{"t": "p", "x": "לא כל מוצר שלא מתאים כרגע צריך להיזרק. לפעמים נכון להשהות אותו לכמה שבועות, לחזור לבסיס פשוט יותר, ואז לבדוק אם באמת יש לו מקום בשגרה."}, {"t": "li", "x": "תחושת מתיחה, צריבה או עקצוץ."}, {"t": "li", "x": "יובש שמופיע כמה שעות אחרי המריחה."}, {"t": "li", "x": "קילוף לא נעים או אדמומיות."}, {"t": "li", "x": "צורך למרוח שוב ושוב כדי להרגיש נוחות."}, {"t": "li", "x": "כמה חומרים פעילים יחד: רטינול, חומצות, פילינגים ומוצרי הבהרה בלי סדר ברור."}], "redundant": [{"t": "p", "x": "עברי על המוצרים שלך ובדקי אם יש כמה מוצרים שעושים כמעט את אותו הדבר, או כאלה שנשארו במגירה בלי תפקיד ברור."}, {"t": "li", "x": "כמה קרמי לחות דומים."}, {"t": "li", "x": "כמה סרומים שמבטיחים “זוהר”."}, {"t": "li", "x": "כמה מוצרי אנטי־אייג׳ינג בלי הבדל ברור ביניהם."}, {"t": "li", "x": "כמה מסכות שלא ברור מתי להשתמש בכל אחת."}, {"t": "li", "x": "כמה שמנים שאין להם תפקיד ברור בשגרה."}, {"t": "p", "x": "אם את לא יודעת למה מוצר נמצא בשגרה שלך — הוא לא חייב להיזרק, אבל הוא בהחלט צריך לעבור בדיקה."}], "recheck": [{"t": "p", "x": "שימי לב במיוחד למוצרים שמבטיחים תוצאה גדולה מאוד, אבל בפועל לא ברור האם הם באמת מתאימים למצב העור שלך עכשיו."}, {"t": "li", "x": "מחיקת קמטים"}, {"t": "li", "x": "מיצוק דרמטי"}, {"t": "li", "x": "אפקט מתיחה מיידי"}, {"t": "li", "x": "חידוש עמוק"}, {"t": "li", "x": "פילינג פעיל"}, {"t": "li", "x": "זוהר מיידי"}, {"t": "p", "x": "שאלי את עצמך: האם המוצר באמת משפר את תחושת העור שלי? האם הוא חלק משגרה ברורה? האם אני משתמשת בו כי הוא מתאים — או כי הוא היה יקר, מומלץ או פשוט כבר נמצא במגירה?"}], "replace": [{"t": "p", "x": "אחד היתרונות של קוד העור הוא שאת לא חייבת להישאר תלויה רק במוצרי מדף. אפשר לבחור מתכונים טבעיים שממלאים תפקיד ברור בשגרה שלך."}, {"t": "li", "x": "קרם הזנה עשיר לערב."}, {"t": "li", "x": "סרום שמנים לנוגדי חמצון וזוהר."}, {"t": "li", "x": "מסכת הזנה וריכוך."}, {"t": "li", "x": "קרם בסיס מועשר בחומרי לחות."}, {"t": "li", "x": "תערובת שמנים לעיסוי עדין."}, {"t": "li", "x": "מוצר תמיכה למחסום העור."}, {"t": "li", "x": "מסכת זוהר עדינה ללא קילוף אגרסיבי."}, {"t": "p", "x": "המטרה היא לא להחליף כל מוצר מיד. המטרה היא להבין מה חסר בשגרה, ואז לבחור מתכון שממלא צורך אמיתי."}], "golden": ["האם יש לי בסיס טוב של לחות, הזנה ושיקום — או שאני רצה ישר למוצרי אנטי־אייג׳ינג חזקים?", "לפני שאת מוסיפה עוד מוצר לשגרה, חזרי לשאלה הזו. היא תעזור לך לבחור מתוך הבנה ולא מתוך ניחוש."]}};
+var TYPE_HE = {dry:'עור יבש / מיובש',oily:'עור שמן',combo:'עור מעורב',normal:'עור רגיל',mature:'עור בוגר'};
+var PDF_HE = {dry:'יבש',oily:'שמן',combo:'מעורב',normal:'רגיל',mature:'בוגר'};
+var OPT = {
+  type:['ניקוי','קרם לחות','סרום','שמן פנים','מסכה','פילינג','קרם עיניים','אחר'],
+  role:['לחות','הזנה','שיקום','איזון','חידוש','הרגעה','זוהר','אני לא בטוחה'],
+  suit:['כן','אולי','לא בטוחה','כנראה שלא'],
+  feel:['רך ונעים','רגוע','מוזן','מתוח','יבש','צורב','מבריק מדי','לא רואה שינוי'],
+  decision:['להשאיר','להשהות','לסיים ולא לקנות שוב','להחליף במתכון טבעי','לבדוק שוב בהמשך']
+};
+var DEC_CLASS = {'להשאיר':'d-keep','להשהות':'d-pause','לסיים ולא לקנות שוב':'d-finish','להחליף במתכון טבעי':'d-replace','לבדוק שוב בהמשך':'d-recheck'};
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function st(){try{return localStorage.getItem('kh_state');}catch(e){return null;}}
+
+var STATE = st();
+if(!STATE || !MAP[STATE]){ document.getElementById('gate').style.display='block'; }
+else { render(STATE); }
+
+function listBlock(items, cls){
+  var html='', open=false;
+  items.forEach(function(it){
+    if(it.t==='cat'){ if(open){html+='</ul>';open=false;} html+='<div class="catname">'+esc(it.x)+'</div>'; }
+    else if(it.t==='li'){ if(!open){html+='<ul class="clean '+(cls||'')+'">';open=true;} html+='<li>'+esc(it.x)+'</li>'; }
+    else { if(open){html+='</ul>';open=false;} html+='<p class="intro">'+esc(it.x)+'</p>'; }
+  });
+  if(open) html+='</ul>';
+  return html;
+}
+
+function render(type){
+  var d = MAP[type];
+  document.getElementById('app').style.display='block';
+  document.getElementById('typeBadge').textContent='✦ '+TYPE_HE[type];
+  document.getElementById('subtitle').textContent=d.subtitle;
+  var pdf='https://yalihod-ai.github.io/kod-haor/'+encodeURIComponent('מפת-סינון-'+PDF_HE[type]+'.pdf');
+  document.getElementById('pdfTop').href=pdf;
+  var h='';
+  h+='<section><div class="card"><h2>איך להשתמש במפה הזו</h2>'+listBlock(d.howto)+'</div></section>';
+  h+='<section><div class="card"><h2>מה העור שלך <span class="g">צריך עכשיו</span></h2>'+listBlock(d.needs,'dot')+'</div></section>';
+  h+='<section><div class="card accent-keep"><h2>מה כדאי <span class="g">להשאיר</span> במגירה</h2>'+listBlock(d.keep)+'</div></section>';
+  h+='<section><div class="card accent-pause"><h2>מה כדאי <span class="g">להשהות</span> כרגע</h2>'+listBlock(d.pause,'dot')+'</div></section>';
+  h+='<section><div class="card accent-redundant"><h2>מה כנראה <span class="g">מיותר או כפול</span></h2>'+listBlock(d.redundant,'dot')+'</div></section>';
+  h+='<section><div class="card accent-recheck"><h2>מה כדאי <span class="g">לבדוק מחדש</span></h2>'+listBlock(d.recheck,'dot')+'</div></section>';
+  h+='<section><div class="card accent-replace"><h2>מה אפשר <span class="g">להחליף במתכון טבעי</span></h2>'+listBlock(d.replace,'dot')+'</div></section>';
+  h+='<section><div class="card tool"><h2>סינון המגירה <span class="g">שלי</span></h2>'
+    +'<p class="intro">קחי מוצר אחד בכל פעם ועני עליו. אל תעברי מהר מדי — המטרה היא להבין, לא רק למיין. מה שתמלאי נשמר אצלך אוטומטית.</p>'
+    +'<div class="form">'
+    +'<div><label>שם המוצר</label><input id="f_name" placeholder="לדוגמה: קרם לחות של..."></div>'
+    +'<div class="grid2">'
+    +'<div><label>סוג המוצר</label>'+sel('f_type','type')+'</div>'
+    +'<div><label>התפקיד שלו בשגרה</label>'+sel('f_role','role')+'</div>'
+    +'<div><label>מתאים למסלול שקיבלת?</label>'+sel('f_suit','suit')+'</div>'
+    +'<div><label>איך העור מרגיש אחריו?</label>'+sel('f_feel','feel')+'</div>'
+    +'</div>'
+    +'<div><label>ההחלטה שלי לגביו</label>'+sel('f_dec','decision')+'</div>'
+    +'<button class="addbtn" onclick="addProduct()">הוספה למפה שלי +</button>'
+    +'<div class="saved" id="savedMsg"></div>'
+    +'</div><div id="prodList"></div></div></section>';
+  h+='<div class="wrap"><div class="golden"><div class="lbl">כלל הזהב</div>';
+  d.golden.forEach(function(g,i){ h+= i===0 ? '<p>'+esc(g)+'</p>' : '<div class="foot">'+esc(g)+'</div>'; });
+  h+='</div></div>';
+  h+='<section><div class="card summary tool"><h2>הסיכום <span class="g">האישי שלי</span></h2>'
+    +'<p class="intro">אחרי שסיננת את המגירה, כתבי לעצמך:</p>'
+    +'<div class="row"><label>שלושת המוצרים שאני משאירה</label>'
+    +'<input data-k="keep1" placeholder="1"><div style="height:8px"></div><input data-k="keep2" placeholder="2"><div style="height:8px"></div><input data-k="keep3" placeholder="3"></div>'
+    +'<div class="row"><label>שני מוצרים שאני משהה כרגע</label>'
+    +'<input data-k="pause1" placeholder="1"><div style="height:8px"></div><input data-k="pause2" placeholder="2"></div>'
+    +'<div class="row"><label>מוצר אחד שאפשר להחליף במתכון טבעי</label><input data-k="replace1" placeholder="..."></div>'
+    +'<div class="row"><label>הדבר המרכזי שהבנתי על שגרת הטיפוח שלי</label><textarea data-k="insight" rows="3" placeholder="..."></textarea></div>'
+    +'<div class="saved" id="sumSaved"></div></div></section>';
+  h+='<div class="wrap"><p class="closing">המטרה היא לא שתהיה לך מגירה מושלמת. המטרה היא שתהיה לך שגרה שאת מבינה. כשאת יודעת מה העור שלך צריך, קל יותר להבין מה להשאיר, מה להשהות, מה מיותר — ומה באמת יכול לתמוך בעור שלך עכשיו.</p></div>';
+  h+='<section style="text-align:center"><a class="pdfbtn" href="'+pdf+'" target="_blank" rel="noopener">⬇ הורדת המפה כ-PDF (לעבודה על הנייר)</a></section>';
+  document.getElementById('content').innerHTML=h;
+  renderProducts(); loadSummary();
+}
+
+function sel(id,key){
+  var o='<select id="'+id+'"><option value="">בחרי…</option>';
+  OPT[key].forEach(function(v){o+='<option>'+v+'</option>';});
+  return o+'</select>';
+}
+function pkey(){return 'kh_drawer_products';}
+function getProducts(){try{return JSON.parse(localStorage.getItem(pkey())||'[]');}catch(e){return [];}}
+function setProducts(a){try{localStorage.setItem(pkey(),JSON.stringify(a));}catch(e){}}
+function val(id){return document.getElementById(id).value;}
+function addProduct(){
+  var name=document.getElementById('f_name').value.trim();
+  if(!name){document.getElementById('savedMsg').textContent='כתבי שם מוצר כדי להוסיף.';return;}
+  var p={name:name,type:val('f_type'),role:val('f_role'),suit:val('f_suit'),feel:val('f_feel'),dec:val('f_dec')};
+  var a=getProducts();a.push(p);setProducts(a);
+  ['f_name','f_type','f_role','f_suit','f_feel','f_dec'].forEach(function(id){document.getElementById(id).value='';});
+  var m=document.getElementById('savedMsg');m.textContent='נשמר ✓';setTimeout(function(){m.textContent='';},1500);
+  renderProducts();
+}
+function delProduct(i){var a=getProducts();a.splice(i,1);setProducts(a);renderProducts();}
+function renderProducts(){
+  var a=getProducts(),el=document.getElementById('prodList');
+  if(!el)return;
+  if(!a.length){el.innerHTML='<div class="empty">עדיין לא הוספת מוצרים. התחילי ממוצר אחד 🙂</div>';return;}
+  el.innerHTML=a.map(function(p,i){
+    var dc=DEC_CLASS[p.dec]||'';
+    var meta=[];
+    if(p.type)meta.push(p.type);
+    if(p.role)meta.push('תפקיד: '+p.role);
+    if(p.suit)meta.push('מתאים: '+p.suit);
+    if(p.feel)meta.push('תחושה: '+p.feel);
+    return '<div class="prod '+dc+'"><div class="top"><span class="pname">'+esc(p.name)+'</span>'
+      +(p.dec?'<span class="dec '+dc+'">'+esc(p.dec)+'</span>':'')+'</div>'
+      +(meta.length?'<div class="meta">'+esc(meta.join(' · '))+'</div>':'')
+      +'<button class="del" onclick="delProduct('+i+')">הסרה</button></div>';
+  }).join('');
+}
+function skey(){return 'kh_drawer_summary';}
+function loadSummary(){
+  var s={};try{s=JSON.parse(localStorage.getItem(skey())||'{}');}catch(e){}
+  document.querySelectorAll('[data-k]').forEach(function(inp){
+    if(s[inp.dataset.k])inp.value=s[inp.dataset.k];
+    inp.addEventListener('input',saveSummary);
+  });
+}
+function saveSummary(){
+  var s={};document.querySelectorAll('[data-k]').forEach(function(inp){s[inp.dataset.k]=inp.value;});
+  try{localStorage.setItem(skey(),JSON.stringify(s));}catch(e){}
+  var m=document.getElementById('sumSaved');if(m){m.textContent='נשמר ✓';clearTimeout(window._st);window._st=setTimeout(function(){m.textContent='';},1200);}
+}
+</script>
+</body>
+</html>
