@@ -45,6 +45,13 @@
  .cartnote{text-align:center;font-size:.8rem;color:var(--brown-soft);margin-top:8px}
  .disc{color:var(--brown);font-size:1rem;background:var(--white);border:1px solid var(--cream-deep);border-top:4px solid var(--gold);border-radius:16px;padding:26px 28px;margin:40px 0 30px;line-height:1.85;text-align:center;max-width:760px;margin-left:auto;margin-right:auto;box-shadow:0 6px 24px rgba(108,83,54,.08)}
  footer{text-align:center;padding:28px;color:var(--brown-soft);font-size:.85rem;letter-spacing:2px;font-weight:700}
+
+  .guidebox{background:linear-gradient(135deg,#a98c50,#c2a66e);color:#fff;border-radius:20px;padding:30px 28px;margin:34px 0;text-align:center;box-shadow:0 14px 40px rgba(169,140,80,.32)}
+  .guidebox h3{font-size:1.42rem;font-weight:900;margin-bottom:10px;color:#fff}
+  .guidebox p{font-size:1.02rem;opacity:.95;max-width:520px;margin:0 auto 20px;line-height:1.7}
+  .guidebtn{display:inline-block;background:#fff;color:#a98c50;font-weight:900;font-size:1.08rem;padding:16px 40px;border-radius:999px;text-decoration:none;box-shadow:0 8px 22px rgba(0,0,0,.16)}
+  .guidebtn:hover{background:#6c5336;color:#fff}
+  @media(max-width:560px){.guidebox{padding:26px 20px}.guidebox h3{font-size:1.22rem}.guidebtn{width:100%;padding:16px 20px}}
 </style></head><body>
 <div class="logobar"><img src="logo.png" alt="יאלי הוד"></div>
 <div class="wrap"><a class="backlink" href="קוד-העור-דשבורד.html">&#8592; חזרה לבית</a></div>
@@ -56,7 +63,7 @@
 <div class="wrap">
   <section><h2 class="stitle">על העור <span class="g">שלך</span></h2><p id="about" style="color:var(--brown-soft);font-size:1.05rem;max-width:700px"></p></section>
   <section><h2 class="stitle">שגרת הטיפוח <span class="g">שלך</span></h2><p class="slead">בוקר · ערב · שבועי — מותאמת לעור שלך.</p><div class="routine" id="routine"></div></section>
-  <section><h2 class="stitle">המוצרים <span class="g">והמתכונים</span> שלך</h2><p class="slead">אלה המוצרים המומלצים עבורך — עם פורמולה המלאה והסבר לכל אחד.</p><div id="prods"></div></section>
+  <section><h2 class="stitle">המוצרים <span class="g">והמתכונים</span> שלך</h2><p class="slead">אלה המוצרים המומלצים עבורך — עם פורמולה המלאה והסבר לכל אחד.</p><div id="prods"></div></section><section id="guidesec"><div class="guidebox"><h3>📕 המדריך האישי שלך להורדה</h3><p>כל מה שיש כאן — גם כקובץ מסודר להדפסה: סוג העור שלך, שגרת הטיפוח, הפורמולות המלאות, חומרי הגלם והדגשים. נוח לקחת איתך למטבח בזמן ההכנה.</p><a class="guidebtn" href="https://yalihod-ai.github.io/kod-haor/מדריך-עור-יבש.pdf" target="_blank" rel="noopener">📄 להורדת המדריך (PDF)</a></div></section>
   <section><div class="shopbox"><h3>🛒 חומרי הגלם שלך</h3><p class="s">כל חומרי הגלם למתכונים — לחצי על כל אחד לפרטים:</p><div id="shop"></div>
     <a class="cartbtn" id="cartbtn" href="#" target="_blank" rel="noopener" style="text-decoration:none;text-align:center;box-sizing:border-box">הוסיפי הכל לסל בחנות ←</a>
     <p class="cartnote">הכפתור פותח עגלה בחנות עם כל חומרי הגלם.</p></div></section>
@@ -91,5 +98,4 @@ document.getElementById('shop').innerHTML=D.shop.map(function(s){return '<detail
 (function(){ var ids=D.shop.map(function(s){return VMAP[s[0]];}).filter(Boolean); var b=document.getElementById('cartbtn');
   if(b && ids.length){ b.href='https://lilacnature-shop.co.il/cart/'+ids.map(function(id){return id+':1';}).join(',')+'?storefront=true'; } })();
 </script>
-<script>if(typeof open!=='undefined'&&open){var _ms=document.getElementById('mapsec');if(_ms){_ms.removeAttribute('hidden');_ms.innerHTML='<div class="shopbox"><h3>📕 המדריך האישי שלך</h3><p class="s">מדריך PDF מלא להורדה והדפסה: הסבר על סוג העור שלך, שגרת טיפוח, דגשים, חומרי גלם ומתכונים מומלצים.</p><a class="cartbtn" style="text-decoration:none;text-align:center;display:block" href="https://yalihod-ai.github.io/kod-haor/מדריך-עור-יבש.pdf" target="_blank" rel="noopener">📄 להורדת המדריך (PDF)</a></div>';}}</script>
 </body></html>
